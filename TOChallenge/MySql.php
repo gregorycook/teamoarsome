@@ -11,7 +11,6 @@
 		$mysqli = new mysqli($host, $user, $thingy, $db);
 		if (mysqli_connect_errno())
 		{
-			echo "Connect failed: ".mysqli_connect_error();
 			$mysqli = '';
 		}
 		
