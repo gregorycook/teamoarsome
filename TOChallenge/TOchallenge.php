@@ -44,18 +44,24 @@ else
 </script>
 </head>
 <body>
-<img src="img/TO.png" alt="">
-<select>
-	<option>May 2014</option>
-	<option>June 2014</option>
-	<option>July 2014</option>
-</select>
+<div id="banner" > <img src="img/TO.png" alt="">TEAM OARSOME CHALLENGE</div>
 
+
+<div id = "month">
+	<select>
+		<option>May 2014</option>
+		<option>June 2014</option>
+		<option>July 2014</option>
+	</select>
+</div>
+<div id = "challenge">Row as fast as you can for as long as you can</div>
+<div id ="name">
 <select>
 	<option>Arlene Wade</option>
 	<option>Gregory Cook</option>
 	<option>Fishing</option>
-</select>
+	</select>
+</div>
 <form action="../cgi-bin/mycgi.pl" method="POST">Meters <input
 	name="dollar" size="5" maxlength="5"
 	onkeypress="return numbersonly(this, event)"> <input
@@ -165,7 +171,7 @@ Sec:
 </select>
 
 
-<div>Row as fast as you can for as long as you can</div>
+
 </body>
 </head>
 </html>
