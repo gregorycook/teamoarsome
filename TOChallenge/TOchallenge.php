@@ -1,5 +1,7 @@
 <?php
 	include_once 'ObjectAthlete.php';
+	$athletes = Athlete::GetAll();
+	echo Count($athletes);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -50,7 +52,7 @@
 	
 	<body>
 
-		<div id="banner" > <img src="img/TObanner.png" alt="logo">TEAM OARSOME CHALLENGE</div>
+		<div id="banner" > <img src="img/TObanner.png" alt="logo"></div>
 
 
 		<div id = "month">
@@ -66,9 +68,13 @@
 
 		<div id ="name">
 			<select>
-				<option>Arlene Wade</option>
-				<option>Gregory Cook</option>
-				<option>Fishing</option>
+				<?php 
+
+				foreach($athletes as $athlete)
+				{
+					echo "<option value='$athlete->AthleteId'>$athlete->Name</option>\n";
+				}
+			?>
 			</select>
 		</div>
 		
@@ -110,26 +116,26 @@
 				<option>15</option>
 				<option>16</option>
 				<option>17</option>
-			<option>18</option>
-			<option>19</option>
-	<option>20</option>
-	<option>21</option>
-	<option>22</option>
-	<option>23</option>
-	<option>24</option>
-	<option>25</option>
-	<option>26</option>
-	<option>27</option>
-	<option>28</option>
-	<option>29</option>
-	<option>30</option>
-	<option>31</option>
-	<option>32</option>
-	<option>33</option>
-	<option>34</option>
-	<option>35</option>
-	<option>36</option>
-	<option>37</option>
+				<option>18</option>
+				<option>19</option>
+				<option>20</option>
+				<option>21</option>
+				<option>22</option>
+				<option>23</option>
+				<option>24</option>
+				<option>25</option>
+				<option>26</option>
+				<option>27</option>
+				<option>28</option>
+				<option>29</option>
+				<option>30</option>
+				<option>31</option>
+				<option>32</option>
+				<option>33</option>
+				<option>34</option>
+				<option>35</option>
+				<option>36</option>
+				<option>37</option>
 	<option>38</option>
 	<option>39</option>
 	<option>40</option>
