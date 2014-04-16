@@ -44,11 +44,27 @@ class Challenge
 
 	function MakeCurrent()
 	{
+		$updateOldCurrent = "update Current set EndActive=Now() where EndActive is null";
+		ExecuteStatement($updateOldCurrent);
+		
+		$insertNewCurrent = "insert into Current(ChallengeId) values (".$this->ChallengeId.")";
+		ExecuteStatement($insertNewCurrent);
 	}
 
+	private static function CreateFromRecord($r)
+	{
+		return new Challenge(
+				$r['Id'], $r['Name'], $r['Month'],
+				$r['Year'], $r['Type'], $r['Description'],
+				$r['Distance'], $r['Time']);
+	}
+	
 	static function GetCurrent()
 	{
-	
+		$selectSQL = "select * from Challenge ch, Current cu where ch.Id = cu.ChallengeId and ch.EndActive is null";
+		$challengeRecord = GetSelectResult($selectSQL);
+		
+		return Challenge::CreateFromRecord($challengeRecord[0]);
 	}
 	
 	static function GetAll()
@@ -59,10 +75,7 @@ class Challenge
 		$challenges = array();
 		foreach ($challengeRecords as $r)
 		{
-			$challenges[count($challenges)] = new Challenge(
-				$r['Id'], $r['Name'], $r['Month'],
-				$r['Year'], $r['Type'], $r['Description'],
-				$r['Distance'], $r['Time']);
+			$challenges[count($challenges)] = Challenge::CreateFromRecord($r);
 		}
 	
 		return $challenges;
