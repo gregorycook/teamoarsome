@@ -17,27 +17,31 @@ div#banner
 	}
 div#month{
 	background-color: #ff0000;
-	width: 100%;
+	width: 200px;
 	height:  51px;
 	}
 div#challenge{
 	background-color: #00ff00;
-	width: 100%;
+	width: 400px;
 	height:  51px;
 	}
 div#name
 	{
 	background-color: #0000ff;
-	width: 100%;
+	width: 200px;
 	height:  51px;
 	}
 div#meters
 	{
-	
+	background-color: #0000aa;
+	width: 200px;
+	height:  51px;
 	}
 div#time
 	{
-	
+	background-color: #00aa00;
+	width: 200px;
+	height:  51px;
 	}
 h2{
 	
