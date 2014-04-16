@@ -1,7 +1,10 @@
 <?php
 	include_once 'ObjectAthlete.php';
 	$athletes = Athlete::GetAll();
-	echo Count($athletes);
+	echo $_SERVER['REQUEST_METHOD']."<br>";
+	
+	echo $_POST['athlete']."<br>";
+	echo $_POST['meters']."<br>";
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -54,8 +57,8 @@
 
 		<div id="banner" > <img src="img/TObanner.png" alt="logo"></div>
 
-		<form action="process.php" method="POST">
-			<div id = "month">
+		<form action="TOchallenge.php" method="POST">
+			<div id="month">
 				Month:
 				<select>
 					<option>May 2014</option>
@@ -64,13 +67,13 @@
 				</select>
 			</div>
 		
-			<div id = "challenge">
+			<div id="challenge">
 				Challenge:<br>Row as fast as you can for as long as you can
 			</div>
 
-			<div id ="name">
+			<div id="name">
 			Rower:
-				<select>
+				<select name="athlete">
 					<?php 
 
 					foreach($athletes as $athlete)
@@ -81,13 +84,13 @@
 				</select>
 			</div>
 	
-			<div id = "meters">
+			<div id="meters">
 				Meters <input name="meters" size="5" maxlength="5"
 				onkeypress="return numbersonly(this, event)"> 
 			</div>
-			<div id = "time">
+			<div id="time">
 				Hours:
-				<select>
+				<select name="hours">
 					<option>0</option>
 					<option>1</option>
 					<option>2</option>
@@ -100,7 +103,7 @@
 					<option>9</option>
 				</select>
 				Min:
-				<select>
+				<select name="minutes">
 					<option>0</option>
 					<option>1</option>
 					<option>2</option>
@@ -163,7 +166,7 @@
 					<option>59</option>
 			</select>
 			Sec:
-			<select>
+			<select name="seconds">
 					<option>0</option>
 					<option>1</option>
 					<option>2</option>
@@ -175,7 +178,7 @@
 					<option>8</option>
 					<option>9</option>
 			</select>
-			<select>
+			<select name="fracsec">
 					<option>.0</option>
 					<option>.1</option>
 					<option>.2</option>
@@ -190,9 +193,6 @@
 			</div>
 			<input type="SUBMIT" value="WOOHOO!">
 		</form>
-
-
-
 </body>
 </head>
 </html>
