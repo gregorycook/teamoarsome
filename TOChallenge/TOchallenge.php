@@ -1,10 +1,18 @@
 <?php
 	include_once 'ObjectAthlete.php';
-	$athletes = Athlete::GetAll();
-	echo $_SERVER['REQUEST_METHOD']."<br>";
+	include_once 'ObjectAttempt.php';
+	include_once 'ObjectChallenge.php';
 	
-	echo $_POST['athlete']."<br>";
-	echo $_POST['meters']."<br>";
+	if($_SERVER['REQUEST_METHOD']=="POST")
+	{
+		$attempt = new Attempt(0, $_POST['athlete'],
+			$_POST['challengeId'], $_POST['meters'], 0, "L", 0, 0);
+		
+		$attempt->Save();
+	}
+	
+	$athletes = Athlete::GetAll();
+	$currentChallenge = Challenge::GetCurrent();
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -58,6 +66,7 @@
 		<div id="banner" > <img src="img/TObanner.png" alt="logo"></div>
 
 		<form action="TOchallenge.php" method="POST">
+			<input type="hidden" name="challengeId" value="<?php echo $currentChallenge->ChallengeId ?>"/>
 			<div id="month">
 				Month:
 				<select>

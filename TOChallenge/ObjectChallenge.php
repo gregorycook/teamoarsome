@@ -63,7 +63,7 @@ class Challenge
 	{
 		$selectSQL = "select ch.* from Challenge ch, Current cu where ch.Id = cu.ChallengeId and cu.EndActive is null";
 		$challengeRecord = GetSelectResult($selectSQL);
-		echo Count($challengeRecord);
+		
 		return Challenge::CreateFromRecord($challengeRecord[0]);
 	}
 	
