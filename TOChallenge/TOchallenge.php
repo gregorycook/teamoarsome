@@ -26,6 +26,14 @@
 	$currentChallenge = Challenge::GetCurrent();
 	
 	$attempts = Attempt::GetForChallenge($currentChallenge->ChallengeId);
+
+	function FormatSeconds($seconds)
+	{
+		$minutesPart = floor($seconds/60);
+		$secondPart = ($seconds - 60*$minutesPart);
+		
+		return $minutesPart.":".str_pad(number_format($secondPart, 1), 4, "0", STR_PAD_LEFT);
+	}	
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -175,8 +183,8 @@
 				echo "<tr>";
 				echo "<td>".$attempt->AthleteName."</td>";
 				echo "<td>".$attempt->Distance."</td>";
-				echo "<td>".$attempt->Time."</td>";
-				echo "<td>".$pace."</td>";
+				echo "<td>".FormatSeconds($attempt->Time)."</td>";
+				echo "<td>".FormatSeconds($pace)."</td>";
 				echo "<td>".$attempt->SPM."</td>";
 
 				echo "</tr>";
