@@ -73,7 +73,8 @@ class Attempt
    and a.AthleteId = ath.Id
    and x.ChallengeId = a.ChallengeId
    and x.AttemptDate = a.Entered
-   and a.ChallengeId = ".$challengeId;
+   and a.ChallengeId = ".$challengeId."
+order by a.Distance/a.Time desc";
 		
 		$attemptRecords = GetSelectResult($selectSQL);
 	
