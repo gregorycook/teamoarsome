@@ -5,15 +5,21 @@
 	
 	if($_SERVER['REQUEST_METHOD']=="POST")
 	{
-		$seconds = 3600*$_POST['hours'] + 60*$_POST['minutes']
-		         + $_POST['seconds'] + $_POST['fracsec']/10;
+		$seconds = $_POST['challengeTime'];
+		$distance = $_POST['challengeDistance'];
+		if ($_POST['challengeType']=="D")
+		{
+			$seconds = 3600*$_POST['hours'] + 60*$_POST['minutes']
+		         	+ $_POST['seconds'] + $_POST['fracsec']/10;
+		}
+		else
+		{
+			$distance = $_POST['meters'];
+		}
 		$attempt = new Attempt(0, $_POST['athlete'], '',
-			$_POST['challengeId'], $_POST['meters'], $seconds, "L", 0, 0);
-		echo $_POST['hours']."<br>";
-		echo $_POST['minutes']."<br>";
-		echo $_POST['seconds']."<br>";
-		echo $_POST['fracsec']."<br>";
-		//$attempt->Save();
+			$_POST['challengeId'], $distance, $seconds, "L", 0, 0);
+
+		$attempt->Save();
 	}
 	
 	$athletes = Athlete::GetAll();
@@ -74,6 +80,9 @@
 
 		<form action="TOchallenge.php" method="POST">
 			<input type="hidden" name="challengeId" value="<?php echo $currentChallenge->ChallengeId ?>"/>
+			<input type="hidden" name="challengeType" value="<?php echo $currentChallenge->Type ?>"/>
+			<input type="hidden" name="challengeTime" value="<?php echo $currentChallenge->Time ?>"/>
+			<input type="hidden" name="challengeDistance" value="<?php echo $currentChallenge->Distance ?>"/>
 			<div id="month">
 				Month:
 				<select>
@@ -148,8 +157,9 @@
 		<table>
 			<tr>
 				<td>Athlete</td>
-				<td>Pace</td>
+				<td>Distance</td>
 				<td>Time</td>
+				<td>Pace</td>
 				<td>spm</td>
 				<td>pace<br>gain</td>
 				<td>pace<br>pts</td>
@@ -159,23 +169,18 @@
 				<td>gain<br>total</td>
 				<td>all<br>total</td>
 			<?php 
-			$athletes = Athlete::GetAll();
-			foreach($athletes as $athlete)
+			foreach($attempts as $attempt)
 			{
-				echo "<tr><td>";
-				echo $athlete->Name."</td>";
-				echo"<td>";
-				echo $athlete->Name.</td>;
-				
-				
-				
-				
-				
-				
-				echo </tr>";
+				$pace = $attempt->Time / ($attempt->Distance/500);
+				echo "<tr>";
+				echo "<td>".$attempt->AthleteName."</td>";
+				echo "<td>".$attempt->Distance."</td>";
+				echo "<td>".$attempt->Time."</td>";
+				echo "<td>".$pace."</td>";
+				echo "<td>".$attempt->SPM."</td>";
+
+				echo "</tr>";
 			}
-	
-				//$athletes = Athlete::GetAll();
 			?>
 		</table>
 </body>

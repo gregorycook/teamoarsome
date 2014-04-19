@@ -37,7 +37,7 @@ class Attempt
 		                       "'".$this->Weight."',".
 		                       "Now(),".
 		                       $this->SPM.")";
-		echo $insertSQL;
+
 		ExecuteStatement($insertSQL);
 	}
 
@@ -54,7 +54,7 @@ class Attempt
 		$selectSQL = 
 "SELECT a.Id, 
 		a.AthleteId,
-		a.Name AthleteName,
+		ath.Name AthleteName,
 		a.ChallengeId,
 		a.Distance,
 		a.Time,
@@ -70,7 +70,7 @@ class Attempt
        group by AthleteId,
                 ChallengeId) x
  where x.AthleteId = a.AthleteId
-   and a.AtheteId = ath.Id
+   and a.AthleteId = ath.Id
    and x.ChallengeId = a.ChallengeId
    and x.AttemptDate = a.Entered
    and a.ChallengeId = ".$challengeId;
