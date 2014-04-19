@@ -140,6 +140,40 @@
 			</div>
 			<input type="SUBMIT" value="WOOHOO!">
 		</form>
+
+		<table>
+			<tr>
+				<td>Athlete</td>
+				<td>Pace</td>
+				<td>Time</td>
+				<td>spm</td>
+				<td>pace<br>gain</td>
+				<td>pace<br>pts</td>
+				<td>gain<br>pts</td>
+				<td>all<br>pts</td>
+				<td>pace<br>total</td>
+				<td>gain<br>total</td>
+				<td>all<br>total</td>
+			<?php 
+			$athletes = Athlete::GetAll();
+			foreach($athletes as $athlete)
+			{
+				echo "<tr><td>";
+				echo $athlete->Name."</td>";
+				echo"<td>";
+				echo $athlete->Name.</td>;
+				
+				
+				
+				
+				
+				
+				echo </tr>";
+			}
+	
+				//$athletes = Athlete::GetAll();
+			?>
+		</table>
 </body>
 </head>
 </html>
