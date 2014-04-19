@@ -5,8 +5,10 @@
 	
 	if($_SERVER['REQUEST_METHOD']=="POST")
 	{
-		$attempt = new Attempt(0, $_POST['athlete'],
-			$_POST['challengeId'], $_POST['meters'], 0, "L", 0, 0);
+		$seconds = 3600*$_POST['hours'] + 60*$_POST['minutes']
+		         + $_POST['seconds'] + $_POST['fracsec']/10;
+		$attempt = new Attempt(0, $_POST['athlete'], '',
+			$_POST['challengeId'], $_POST['meters'], $seconds, "L", 0, 0);
 		
 		$attempt->Save();
 	}

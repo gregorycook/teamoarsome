@@ -5,6 +5,7 @@ class Attempt
 {
 	var $AttemptId;
 	var $AthleteId;
+	var $AthleteName;
 	var $ChallengeId;
 	var $Distance;
 	var $Time;
@@ -12,11 +13,12 @@ class Attempt
 	var $Entered;
 	var $SPM;
 	
-	function Attempt($attemptId, $athleteId, $challengeId,
-		$distance, $time, $weight, $entered, $spm)
+	function Attempt($attemptId, $athleteId, $athleteName,
+		$challengeId, $distance, $time, $weight, $entered, $spm)
 	{
 		$this->AttemptId = $attemptId;
 		$this->AthleteId = $athleteId;
+		$this->AthleteName = $athleteName;
 		$this->ChallengeId = $challengeId;
 		$this->Distance = $distance;
 		$this->Time = $time;
@@ -42,9 +44,9 @@ class Attempt
 	private static function CreateFromRecord($r)
 	{
 		return new Attempt(
-				$r['Id'], $r['AthleteId'], $r['ChallengeId'],
-				$r['Distance'], $r['Time'], $r['Weight'],
-				$r['Entered'], $r['SPM']);
+				$r['Id'], $r['AthleteId'], $r['AthleteName'], 
+				$r['ChallengeId'], $r['Distance'], $r['Time'],
+				$r['Weight'], $r['Entered'], $r['SPM']);
 	}
 	
 	static function GetForChallenge($challengeId)
@@ -52,6 +54,7 @@ class Attempt
 		$selectSQL = 
 "SELECT a.Id, 
 		a.AthleteId,
+		a.Name AthleteName,
 		a.ChallengeId,
 		a.Distance,
 		a.Time,
@@ -59,6 +62,7 @@ class Attempt
 		a.Entered,
 		a.SPM
    FROM attempt a,
+        athlete ath,
         (select AthleteId,
                 ChallengeId,
                 Max(Entered) AttemptDate
@@ -66,6 +70,7 @@ class Attempt
        group by AthleteId,
                 ChallengeId) x
  where x.AthleteId = a.AthleteId
+   and a.AtheteId = ath.Id
    and x.ChallengeId = a.ChallengeId
    and x.AttemptDate = a.Entered
    and a.ChallengeId = ".$challengeId;
