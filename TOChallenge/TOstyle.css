@@ -21,14 +21,14 @@ div#month{
 	width: 200px;
 	height:  51px;
 	margin-top: 56px;
-	margin-left: 5px;
+	margin-left: 10px;
 	}
 div#challenge{
 	background-color: #ffffff;
 	width: 300px;
 	height:  200px;
 	margin-top:  106px;
-	margin-left:  5px;
+	margin-left:  10px;
 	font-weight:  bold;
 	font-size:  18px;
 	}
@@ -38,7 +38,7 @@ div#name
 	width: 200px;
 	height:  51px;
 	margin-top:  200px;
-	margin-left:  5px;
+	margin-left:  10px;
 	}
 div#meters
 	{
@@ -46,7 +46,7 @@ div#meters
 	width: 200px;
 	height:  51px;
 	margin-top:  250px;
-	margin-left:  5px;
+	margin-left:  10px;
 	}
 div#time
 	{
@@ -54,7 +54,7 @@ div#time
 	width: 300px;
 	height:  51px;
 	margin-top:  250px;
-	margin-left:  5px;
+	margin-left:  10px;
 	}
 	
 div#strokerate
@@ -63,7 +63,7 @@ div#strokerate
 	width: 200px;
 	height:  51px;
 	margin-top:  300px;
-	margin-left:  5px;
+	margin-left:  10px;
 	}
 div#weightclass
 	{
@@ -71,7 +71,7 @@ div#weightclass
 	width: 200px;
 	height:  51px;
 	margin-top:  300px;
-	margin-left:  100px;
+	margin-left:  110px;
 	}
 	
 div#button
@@ -80,13 +80,29 @@ div#button
 	width: 200px;
 	height:  51px;
 	margin-top:  350px;
-	margin-left:  5px;
+	margin-left:  10px;
+	}
+div#enter
+	{
+	background-color: #ffffff;
+	width: 300px;
+	height:  51px;
+	margin-top:  400px;
+	margin-left:  10px;
+	}
+div#signupbutton
+	{
+	background-color: #ffffff;
+	width: 200px;
+	height:  51px;
+	margin-top:  430px;
+	margin-left:  10px;
 	}
 table
 	{
 	background-color:  #ffffff;
 	margin-top:  106px;
-	margin-left:  350px;
+	margin-left:  360px;
 	width: 400px;
 	}
 td

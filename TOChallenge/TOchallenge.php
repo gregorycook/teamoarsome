@@ -91,6 +91,7 @@
 			<input type="hidden" name="challengeType" value="<?php echo $currentChallenge->Type ?>"/>
 			<input type="hidden" name="challengeTime" value="<?php echo $currentChallenge->Time ?>"/>
 			<input type="hidden" name="challengeDistance" value="<?php echo $currentChallenge->Distance ?>"/>
+			<input type="hidden" name="action" value="ADD-ATTEMPT"/>
 			<div id="month">
 				Month:
 				<select>
@@ -164,17 +165,31 @@
 				SPM: <input name="spm" size="2" maxlength="2"
 				onkeypress="return numbersonly(this, event)"> 
 			</div>
+			
 			<div id="weightclass">
 			Weight:
 				<select name="weight">
-					<option value = 'H'>heavyweight </option>
-					<option value = 'L'>lightweight </option>
+					<option value='H'>heavyweight </option>
+					<option value='L'>lightweight </option>
 
 				</select>
 			</div>
 			
 			<div id = "button">
-			<input type="SUBMIT" value="WOOHOO!"></div>
+			<input type="SUBMIT" value="WOOHOO!"></div>s
+		</form>
+		<form action="TOchallenge.php" method="POST">
+			<input type="hidden" name="action" value="SIGN-UP"/>
+			<div id="enter">
+				Name: <input name="athlete" size="20" maxlength="50">
+				<select name="gender">
+					<option value='M'>Male</option>
+					<option value='F'>Female</option>
+				</select>
+			</div>
+			<div id="signupbutton">
+			<input type="SUBMIT" value="Sign up!">
+			</div>
 		</form>
 
 		<table>
@@ -206,6 +221,7 @@
 			}
 			?>
 		</table>
+		
 </body>
 </head>
 </html>
