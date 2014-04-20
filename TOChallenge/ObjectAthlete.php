@@ -16,7 +16,7 @@
 		
 		function Save()
 		{
-			$deleteSQL = "delete from Athlete where id=".$this->AthleteId;
+			$deleteSQL = "delete from athlete where id=".$this->AthleteId;
 			ExecuteStatement($deleteSQL);
 			
 			$insertSQL = "insert into athlete(Name, Gender)values('".$this->Name."','".$this->Gender."')";

@@ -5,21 +5,29 @@
 	
 	if($_SERVER['REQUEST_METHOD']=="POST")
 	{
-		$seconds = $_POST['challengeTime'];
-		$distance = $_POST['challengeDistance'];
-		if ($_POST['challengeType']=="D")
+		if ($_POST["action"] == "ADD-ATTEMPT")
 		{
-			$seconds = 3600*$_POST['hours'] + 60*$_POST['minutes']
-		         	+ $_POST['seconds'] + $_POST['fracsec']/10;
+			$seconds = $_POST['challengeTime'];
+			$distance = $_POST['challengeDistance'];
+			if ($_POST['challengeType']=="D")
+			{
+				$seconds = 3600*$_POST['hours'] + 60*$_POST['minutes']
+			         	+ $_POST['seconds'] + $_POST['fracsec']/10;
+			}
+			else
+			{
+				$distance = $_POST['meters'];
+			}
+			$attempt = new Attempt(0, $_POST['athlete'], '',
+				$_POST['challengeId'], $distance, $seconds, $_POST['weight'], 0, $_POST['spm']);
+	
+			$attempt->Save();
 		}
 		else
 		{
-			$distance = $_POST['meters'];
+			$newAthlete = new Athlete(0, $_POST['athlete'], $_POST['gender']);
+			$newAthlete->Save();
 		}
-		$attempt = new Attempt(0, $_POST['athlete'], '',
-			$_POST['challengeId'], $distance, $seconds, $_POST['weight'], 0, $_POST['spm']);
-
-		$attempt->Save();
 	}
 	
 	$athletes = Athlete::GetAll();
