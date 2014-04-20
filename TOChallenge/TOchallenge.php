@@ -164,16 +164,27 @@
 				SPM: <input name="spm" size="2" maxlength="2"
 				onkeypress="return numbersonly(this, event)"> 
 			</div>
+			
 			<div id="weightclass">
 			Weight:
 				<select name="weight">
-					<option value = 'H'>heavyweight </option>
-					<option value = 'L'>lightweight </option>
+					<option value='H'>heavyweight </option>
+					<option value='L'>lightweight </option>
 
 				</select>
 			</div>
 			
 			<div id = "button">
+			<input type="SUBMIT" value="WOOHOO!"></div>s
+		</form action="TOchallenge.php" method="POST">
+		<form>
+			<div id="enter">
+				Sign Up:  <input name="athlete" size="20" maxlength="50">
+				<select name="gender">
+					<option value='M'>Male</option>
+					<option value='F'>Female</option>
+				</select>
+			</div>
 			<input type="SUBMIT" value="WOOHOO!"></div>s
 		</form>
 
@@ -206,6 +217,7 @@
 			}
 			?>
 		</table>
+		
 </body>
 </head>
 </html>
