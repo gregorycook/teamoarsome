@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 15, 2014 at 09:58 PM
+-- Generation Time: Apr 19, 2014 at 11:22 PM
 -- Server version: 5.1.41
 -- PHP Version: 5.3.1
 
@@ -59,12 +59,22 @@ CREATE TABLE `attempt` (
   `Entered` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `SPM` int(11) NOT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `attempt`
 --
 
+INSERT INTO `attempt` (`Id`, `AthleteId`, `ChallengeId`, `Distance`, `Time`, `Weight`, `Entered`, `SPM`) VALUES
+(1, 2, 15, 9874, '0.0', 'L', '2014-04-16 22:04:46', 0),
+(2, 2, 15, 4321, '370.1', 'L', '2014-04-19 10:50:04', 0),
+(3, 1, 15, 12324, '7576.1', 'L', '2014-04-19 10:54:52', 0),
+(4, 2, 15, 5432, '3600.0', 'L', '2014-04-19 10:57:33', 0),
+(5, 1, 15, 5000, '1428.1', 'L', '2014-04-19 11:14:18', 0),
+(6, 2, 15, 5000, '1222.1', 'L', '2014-04-19 11:14:50', 0),
+(7, 1, 15, 5000, '1111.0', 'L', '2014-04-19 11:15:15', 0),
+(8, 1, 16, 8000, '1800.0', 'L', '2014-04-19 21:00:14', 0),
+(9, 2, 16, 6675, '1800.0', 'L', '2014-04-19 21:01:37', 0);
 
 -- --------------------------------------------------------
 
@@ -83,27 +93,14 @@ CREATE TABLE `challenge` (
   `Distance` int(11) DEFAULT NULL,
   `Time` decimal(6,1) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
 -- Dumping data for table `challenge`
 --
 
 INSERT INTO `challenge` (`Id`, `Name`, `Month`, `Year`, `Type`, `Description`, `Distance`, `Time`) VALUES
-(2, '5K', 5, 2014, 'D', 'A 5K', 5000, '0.0'),
-(3, '5K', 5, 2014, 'D', 'A 5K', 5000, '0.0'),
-(4, '5K', 5, 2014, 'D', 'A 5K', 5000, '0.0'),
-(5, '5K', 5, 2014, 'D', 'A 5K', 5000, '0.0'),
-(6, '5K', 5, 2014, 'D', 'A 5K', 5000, '0.0'),
-(7, '5K', 5, 2014, 'D', 'A 5K', 5000, '0.0'),
-(8, '5K', 5, 2014, 'D', 'A 5K', 5000, '0.0'),
-(9, '5K', 5, 2014, 'D', 'A 5K', 5000, '0.0'),
-(10, '5K', 5, 2014, 'D', 'A 5K', 5000, '0.0'),
-(11, '5K', 5, 2014, 'D', 'A 5K', 5000, '0.0'),
-(12, '5K', 5, 2014, 'D', 'A 5K', 5000, '0.0'),
-(13, '5K', 5, 2014, 'D', 'A 5K', 5000, '0.0'),
-(14, '5K', 5, 2014, 'D', 'A 5K', 5000, '0.0'),
-(15, '6K', 6, 2014, 'D', 'A KK', 5000, '0.0');
+(16, '30 minutes, no restriction', 6, 2014, 'T', 'A KK', 0, '1800.0');
 
 -- --------------------------------------------------------
 
@@ -123,15 +120,7 @@ CREATE TABLE `current` (
 --
 
 INSERT INTO `current` (`ChallengeId`, `StartActive`, `EndActive`) VALUES
-(14, '2014-04-15 21:08:55', '2014-04-15 21:11:09'),
-(15, '2014-04-15 21:11:09', '2014-04-15 21:23:34'),
-(15, '2014-04-15 21:47:52', '2014-04-15 21:47:57'),
-(15, '2014-04-15 21:47:57', '2014-04-15 21:48:01'),
-(15, '2014-04-15 21:48:01', '2014-04-15 21:48:27'),
-(15, '2014-04-15 21:48:27', '2014-04-15 21:48:59'),
-(15, '2014-04-15 21:48:59', '2014-04-15 21:49:04'),
-(15, '2014-04-15 21:49:04', '2014-04-15 21:50:00'),
-(15, '2014-04-15 21:50:00', NULL);
+(16, '2014-04-19 20:57:57', NULL);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
