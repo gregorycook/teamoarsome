@@ -33,7 +33,7 @@
 		$secondPart = ($seconds - 60*$minutesPart);
 		
 		return $minutesPart.":".str_pad(number_format($secondPart, 1), 4, "0", STR_PAD_LEFT);
-	}	
+	}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -101,7 +101,7 @@
 			</div>
 		
 			<div id="challenge">
-				Challenge:<br>Row as fast as you can for as long as you can
+				Challenge:<br><?php echo $currentChallenge->Description; ?>
 			</div>
 
 			<div id="name">
