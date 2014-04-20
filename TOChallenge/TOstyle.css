@@ -5,7 +5,7 @@ body {
 	}
 	
 div{
-	position: relative;
+	position: absolute;
 	}
 	
 div#banner
@@ -17,35 +17,65 @@ div#banner
 	
 	}
 div#month{
-	background-color: #ff0000;
+	background-color: #ffffff;
 	width: 200px;
 	height:  51px;
+	margin-top: 56px;
+	margin-left: 5px;
 	}
 div#challenge{
-	background-color: #00ff00;
-	width: 400px;
-	height:  51px;
+	background-color: #ffffff;
+	width: 300px;
+	height:  200px;
+	margin-top:  106px;
+	margin-left:  5px;
+	font-weight:  bold;
+	font-size:  18px;
 	}
 div#name
 	{
-	background-color: #0000ff;
+	background-color: #ffffff;
 	width: 200px;
 	height:  51px;
+	margin-top:  200px;
+	margin-left:  5px;
 	}
 div#meters
 	{
-	background-color: #0000aa;
+	background-color: #ffffff;
 	width: 200px;
 	height:  51px;
+	margin-top:  250px;
+	margin-left:  5px;
 	}
 div#time
 	{
-	background-color: #00aa00;
+	background-color: #ffffff;
+	width: 300px;
+	height:  51px;
+	margin-top:  250px;
+	margin-left:  5px;
+	}
+	
+div#button
+	{
+	background-color: #ffffff;
 	width: 200px;
 	height:  51px;
+	margin-top:  300px;
+	margin-left:  5px;
 	}
 table
 	{
-	background-color:  #222200
+	background-color:  #ffffff;
+	margin-top:  106px;
+	margin-left:  350px;
+	width: 400px;
 	}
+td
+	{
+	background-color:  #ffffff;
+	border-bottom-style:dotted;
+	}
+
 	

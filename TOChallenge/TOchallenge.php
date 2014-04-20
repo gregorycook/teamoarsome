@@ -116,66 +116,68 @@
 					?>
 				</select>
 			</div>
-	
-			<div id="meters">
+			<?php 
+			if ($currentChallenge->Type == "T")
+			{
+				echo '<div id="meters">
 				Meters <input name="meters" size="5" maxlength="5"
 				onkeypress="return numbersonly(this, event)"> 
-			</div>
-			<div id="time">
-				Hours:
-				<select name="hours">
-				<?php 
+				</div>';
+			}
+			else
+			{
+				echo '<div id="time"> 
+					Hours: <select name="hours">';
 				for ($x=0; $x<=3; $x++)
-  				{
+  					{
   					echo "<option>$x</option>";
-  				} 
-				?>
-				</select>
-				Min:
-				<select name="minutes">
-				<?php 
+  					} 
+				echo '</select>
+					Min: <select name="minutes">';
 				for ($x=0; $x<=59; $x++)
   				{
   					echo "<option>$x</option>";
   				} 
-				?>
-			</select>
-			Sec:
-			<select name="seconds">
-				<?php 
+
+				echo '</select>
+						Sec:  <select name="seconds">';
+
 				for ($x=0; $x<=59; $x++)
   				{
   					echo "<option>$x</option>";
   				} 
-				?>
-			</select>
-			<select name="fracsec">
-				<?php 
+
+					echo '</select>
+						<select name="fracsec">';
+
 				for ($x=0; $x<=9; $x++)
   				{
   					$y=$x*.1;
   					echo "<option>$y</option>";
   				} 
-				?>
-				</select>
-			</div>
-			<input type="SUBMIT" value="WOOHOO!">
+				echo '</select>
+					</div>';
+			}
+			?>
+
+			<div id = "button">
+			<input type="SUBMIT" value="WOOHOO!"></div>s
 		</form>
 
 		<table>
 			<tr>
-				<td>Athlete</td>
-				<td>Distance</td>
-				<td>Time</td>
-				<td>Pace</td>
-				<td>spm</td>
-				<td>pace<br>gain</td>
-				<td>pace<br>pts</td>
-				<td>gain<br>pts</td>
-				<td>all<br>pts</td>
-				<td>pace<br>total</td>
-				<td>gain<br>total</td>
-				<td>all<br>total</td>
+				<td style = 'font-weight:bold'>Athlete</td>
+				<td style = 'font-weight:bold'>Distance</td>
+				<td style = 'font-weight:bold'>Time</td>
+				<td style = 'font-weight:bold'>Pace</td>
+				<td style = 'font-weight:bold'>spm</td>
+<!--				<td>pace<br>gain</td>-->
+<!--				<td>pace<br>pts</td>-->
+<!--				<td>gain<br>pts</td>-->
+<!--				<td>all<br>pts</td>-->
+<!--				<td>pace<br>total</td>-->
+<!--				<td>gain<br>total</td>-->
+<!--				<td>all<br>total</td>-->
 			<?php 
 			foreach($attempts as $attempt)
 			{

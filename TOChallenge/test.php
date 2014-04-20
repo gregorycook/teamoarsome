@@ -11,8 +11,8 @@
 		echo $athlete->Name."<br>";
 	}
 	
-	//$challenge = new Challenge(1, "6K", 6, 2014, 'D', "A KK", 5000, 0);
-	//$challenge->Save();
+	$challenge = new Challenge(1, "30 minutes, no restriction", 6, 2014, 'T', "A KK", 0, 1800);
+	$challenge->Save();
 	
 	$challenges = Challenge::GetAll();
 	foreach($challenges as $c)
@@ -20,8 +20,8 @@
 		echo $c->ChallengeId.", ".$c->Name."<br>";
 	}
 	
-	//$lastChallenge = $challenges[Count($challenges) - 1];
-	//$lastChallenge->MakeCurrent();
+	$lastChallenge = $challenges[Count($challenges) - 1];
+	$lastChallenge->MakeCurrent();
 	
 	$currentChallenge = Challenge::GetCurrent();
 	echo $currentChallenge->ChallengeId.", ".$currentChallenge->Name."<br>";
