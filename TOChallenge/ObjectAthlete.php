@@ -19,13 +19,13 @@
 			$deleteSQL = "delete from Athlete where id=".$this->AthleteId;
 			ExecuteStatement($deleteSQL);
 			
-			$insertSQL = "insert into Athlete(Name, Gender)values('".$this->Name."','".$this->Gender."')";
+			$insertSQL = "insert into athlete(Name, Gender)values('".$this->Name."','".$this->Gender."')";
 			ExecuteStatement($insertSQL);
 		}
 		
 	static function GetAll()
 		{
-			$selectSQL = "select * from Athlete order by Name";
+			$selectSQL = "select * from athlete order by Name";
 			$athleteRecords = GetSelectResult($selectSQL);
 			
 			$athletes = array();

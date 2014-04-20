@@ -33,7 +33,7 @@
 		$secondPart = ($seconds - 60*$minutesPart);
 		
 		return $minutesPart.":".str_pad(number_format($secondPart, 1), 4, "0", STR_PAD_LEFT);
-	}	
+	}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -91,6 +91,7 @@
 			<input type="hidden" name="challengeType" value="<?php echo $currentChallenge->Type ?>"/>
 			<input type="hidden" name="challengeTime" value="<?php echo $currentChallenge->Time ?>"/>
 			<input type="hidden" name="challengeDistance" value="<?php echo $currentChallenge->Distance ?>"/>
+			<input type="hidden" name="action" value="ADD-ATTEMPT"/>
 			<div id="month">
 				Month:
 				<select>
@@ -101,7 +102,7 @@
 			</div>
 		
 			<div id="challenge">
-				Challenge:<br>Row as fast as you can for as long as you can
+				Challenge:<br><?php echo $currentChallenge->Description; ?>
 			</div>
 
 			<div id="name">
@@ -176,16 +177,18 @@
 			
 			<div id = "button">
 			<input type="SUBMIT" value="WOOHOO!"></div>s
-		</form action="TOchallenge.php" method="POST">
-		<form>
+		</form>
+		<form action="TOchallenge.php" method="POST">
+			<input type="hidden" name="action" value="SIGN-UP"/>
 			<div id="enter">
-				Sign Up:  <input name="athlete" size="20" maxlength="50">
+				Name: <input name="athlete" size="20" maxlength="50">
 				<select name="gender">
 					<option value='M'>Male</option>
 					<option value='F'>Female</option>
 				</select>
 			</div>
-			<input type="SUBMIT" value="WOOHOO!"></div>s
+			<div id="signupbutton">
+			<input type="SUBMIT" value="Sign up!"></div>
 		</form>
 
 		<table>

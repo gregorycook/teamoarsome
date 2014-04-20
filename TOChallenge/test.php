@@ -11,8 +11,8 @@
 		echo $athlete->Name."<br>";
 	}
 	
-	$challenge = new Challenge(1, "30 minutes, no restriction", 6, 2014, 'T', "A KK", 0, 1800);
-	$challenge->Save();
+	//$challenge = new Challenge(1, "30 minutes, no restriction", 6, 2014, 'T', "A KK", 0, 1800);
+	//$challenge->Save();
 	
 	$challenges = Challenge::GetAll();
 	foreach($challenges as $c)

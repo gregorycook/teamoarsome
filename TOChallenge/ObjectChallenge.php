@@ -27,10 +27,10 @@ class Challenge
 	
 	function Save()
 	{
-		$deleteSQL = "delete from Challenge where id=".$this->ChallengeId;
+		$deleteSQL = "delete from challenge where id=".$this->ChallengeId;
 		ExecuteStatement($deleteSQL);
 		
-		$insertSQL = "insert into Challenge(Name, Month, Year, Type, Description, Distance, Time)
+		$insertSQL = "insert into challenge(Name, Month, Year, Type, Description, Distance, Time)
 		              values('".$this->Name."',".
 		                        $this->Month.",".
 		                        $this->Year.",".
@@ -44,10 +44,10 @@ class Challenge
 
 	function MakeCurrent()
 	{
-		$updateOldCurrent = "update Current set EndActive=Now() where EndActive is null";
+		$updateOldCurrent = "update current set EndActive=Now() where EndActive is null";
 		ExecuteStatement($updateOldCurrent);
 		
-		$insertNewCurrent = "insert into Current(ChallengeId) values (".$this->ChallengeId.")";
+		$insertNewCurrent = "insert into current(ChallengeId) values (".$this->ChallengeId.")";
 		ExecuteStatement($insertNewCurrent);
 	}
 
@@ -61,15 +61,15 @@ class Challenge
 	
 	static function GetCurrent()
 	{
-		$selectSQL = "select ch.* from Challenge ch, Current cu where ch.Id = cu.ChallengeId and cu.EndActive is null";
+		$selectSQL = "select ch.* from challenge ch, current cu where ch.Id = cu.ChallengeId and cu.EndActive is null";
 		$challengeRecord = GetSelectResult($selectSQL);
-		echo Count($challengeRecord);
+
 		return Challenge::CreateFromRecord($challengeRecord[0]);
 	}
 	
 	static function GetAll()
 	{
-		$selectSQL = "select * from Challenge order by Year, Month, Name";
+		$selectSQL = "select * from challenge order by Year, Month, Name";
 		$challengeRecords = GetSelectResult($selectSQL);
 	
 		$challenges = array();

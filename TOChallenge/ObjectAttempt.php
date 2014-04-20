@@ -29,7 +29,7 @@ class Attempt
 	
 	function Save()
 	{
-		$insertSQL = "insert into Attempt(AthleteId, ChallengeId, Distance, Time, Weight, Entered, SPM)
+		$insertSQL = "insert into attempt(AthleteId, ChallengeId, Distance, Time, Weight, Entered, SPM)
 		              values(".$this->AthleteId.",".
 		                       $this->ChallengeId.",".
 		                       $this->Distance.",".
