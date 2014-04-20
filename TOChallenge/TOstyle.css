@@ -57,12 +57,29 @@ div#time
 	margin-left:  5px;
 	}
 	
-div#button
+div#strokerate
 	{
 	background-color: #ffffff;
 	width: 200px;
 	height:  51px;
 	margin-top:  300px;
+	margin-left:  5px;
+	}
+div#weightclass
+	{
+	background-color: #ffffff;
+	width: 200px;
+	height:  51px;
+	margin-top:  300px;
+	margin-left:  100px;
+	}
+	
+div#button
+	{
+	background-color: #ffffff;
+	width: 200px;
+	height:  51px;
+	margin-top:  350px;
 	margin-left:  5px;
 	}
 table

@@ -17,7 +17,7 @@
 			$distance = $_POST['meters'];
 		}
 		$attempt = new Attempt(0, $_POST['athlete'], '',
-			$_POST['challengeId'], $distance, $seconds, "L", 0, 0);
+			$_POST['challengeId'], $distance, $seconds, $_POST['weight'], 0, $_POST['spm']);
 
 		$attempt->Save();
 	}
@@ -160,6 +160,19 @@
 			}
 			?>
 
+			<div id="strokerate">
+				SPM: <input name="spm" size="2" maxlength="2"
+				onkeypress="return numbersonly(this, event)"> 
+			</div>
+			<div id="weightclass">
+			Weight:
+				<select name="weight">
+					<option value = 'H'>heavyweight </option>
+					<option value = 'L'>lightweight </option>
+
+				</select>
+			</div>
+			
 			<div id = "button">
 			<input type="SUBMIT" value="WOOHOO!"></div>s
 		</form>
