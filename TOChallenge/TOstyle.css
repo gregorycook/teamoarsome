@@ -85,9 +85,17 @@ div#button
 div#enter
 	{
 	background-color: #ffffff;
-	width: 200px;
+	width: 300px;
 	height:  51px;
 	margin-top:  400px;
+	margin-left:  10px;
+	}
+div#signupbutton
+	{
+	background-color: #ffffff;
+	width: 200px;
+	height:  51px;
+	margin-top:  430px;
 	margin-left:  10px;
 	}
 table

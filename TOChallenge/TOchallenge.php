@@ -188,7 +188,8 @@
 				</select>
 			</div>
 			<div id="signupbutton">
-			<input type="SUBMIT" value="Sign up!"></div>
+			<input type="SUBMIT" value="Sign up!">
+			</div>
 		</form>
 
 		<table>
