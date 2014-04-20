@@ -117,14 +117,14 @@
 				</select>
 			</div>
 			<?php 
-			if (3==2)
+			if ($currentChallenge->Type == "T")
 			{
 				echo '<div id="meters">
 				Meters <input name="meters" size="5" maxlength="5"
 				onkeypress="return numbersonly(this, event)"> 
 				</div>';
 			}
-			elseif (4==4)
+			else
 			{
 				echo '<div id="time"> 
 					Hours: <select name="hours">';
@@ -166,11 +166,11 @@
 
 		<table>
 			<tr>
-				<td>Athlete</td>
-				<td>Distance</td>
-				<td>Time</td>
-				<td>Pace</td>
-				<td>spm</td>
+				<td style = 'font-weight:bold'>Athlete</td>
+				<td style = 'font-weight:bold'>Distance</td>
+				<td style = 'font-weight:bold'>Time</td>
+				<td style = 'font-weight:bold'>Pace</td>
+				<td style = 'font-weight:bold'>spm</td>
 <!--				<td>pace<br>gain</td>-->
 <!--				<td>pace<br>pts</td>-->
 <!--				<td>gain<br>pts</td>-->
