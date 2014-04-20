@@ -174,7 +174,7 @@
 			</div>
 			
 			<div id = "button">
-			<input type="SUBMIT" value="WOOHOO!"></div>s
+			<input type="SUBMIT" value="WOOHOO!"></div>
 		</form>
 
 		<table>
