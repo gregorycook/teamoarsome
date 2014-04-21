@@ -58,8 +58,9 @@
 		<link rel="stylesheet" type="text/css" href="TOstyle.css">
 		<link rel="shortcut icon" href="img/TO.ico" />
 		<script type="text/javascript">
-// copyright 1999 Idocs, Inc. http://www.idocs.com
-// Distribute this script freely but keep this notice in place
+
+        // copyright 1999 Idocs, Inc. http://www.idocs.com
+        // Distribute this script freely but keep this notice in place
 		function numbersonly(myfield, e, dec)
 		{
 			var key;
@@ -74,21 +75,19 @@
    			
 			keychar = String.fromCharCode(key);
 
-// control keys
+            // control keys
 			if ((key==null) || (key==0) || (key==8) || 
     			(key==9) || (key==13) || (key==27) )
    				return true;
-
-// numbers
+            // numbers
 			else if ((("0123456789").indexOf(keychar) > -1))
    				return true;
-
-// decimal point jump
+            // decimal point jump
 			else if (dec && (keychar == "."))
-   		{
+   		    {
    				myfield.form.elements[dec].focus();
    				return false;
-   		}
+   		    }
 			else
    				return false;
 		}
