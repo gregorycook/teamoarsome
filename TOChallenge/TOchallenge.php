@@ -3,6 +3,8 @@
 	include_once 'ObjectAttempt.php';
 	include_once 'ObjectChallenge.php';
 	
+	$currentChallenge = Challenge::GetCurrent();
+	
 	if($_SERVER['REQUEST_METHOD']=="POST")
 	{
 		if ($_POST["action"] == "ADD-ATTEMPT")
@@ -23,15 +25,18 @@
 	
 			$attempt->Save();
 		}
-		else
+		else if ($_POST["action"] == "SIGN-UP")
 		{
 			$newAthlete = new Athlete(0, $_POST['athlete'], $_POST['gender']);
 			$newAthlete->Save();
 		}
+		else if ($_POST["action"] == "CHANGE-CHALLENGE")
+		{
+			$currentChallenge = Challenge::GetById($_POST["whichChallenge"]);
+		}
 	}
 	
 	$athletes = Athlete::GetAll();
-	$currentChallenge = Challenge::GetCurrent();
 	
 	$challenges = Challenge::GetAll();
 	$attempts = Attempt::GetForChallenge($currentChallenge->ChallengeId);
@@ -99,7 +104,7 @@
 			<input type="hidden" name="action" value="CHANGE-CHALLENGE"/>
 			<div id="month">
 				Month:
-				<select>
+				<select name="whichChallenge">
 					<?php 
 						foreach($challenges as $challenge)
 						{
@@ -193,7 +198,7 @@
 				</select>
 			</div>
 			
-			<div id = "button">
+			<div id="button">
 			<input type="SUBMIT" value="WOOHOO!"></div>s
 		</form>
 		<form action="TOchallenge.php" method="POST">

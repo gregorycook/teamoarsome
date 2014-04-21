@@ -71,6 +71,14 @@ class Challenge
 		return Challenge::CreateFromRecord($challengeRecord[0]);
 	}
 	
+	static function GetById($challengeId)
+	{
+		$selectSQL = "select ch.* from challenge ch where ch.Id = ".$challengeId;
+		$challengeRecord = GetSelectResult($selectSQL);
+
+		return Challenge::CreateFromRecord($challengeRecord[0]);
+	}
+	
 	static function GetAll()
 	{
 		$selectSQL = "select * from challenge order by Year desc, Month desc, Name";
