@@ -33,6 +33,7 @@
 	$athletes = Athlete::GetAll();
 	$currentChallenge = Challenge::GetCurrent();
 	
+	$challenges = Challenge::GetAll();
 	$attempts = Attempt::GetForChallenge($currentChallenge->ChallengeId);
 
 	function FormatSeconds($seconds)
@@ -95,19 +96,28 @@
 		<div id="banner" > <img src="img/TObanner.png" alt="logo"></div>
 
 		<form action="TOchallenge.php" method="POST">
+			<input type="hidden" name="action" value="CHANGE-CHALLENGE"/>
+			<div id="month">
+				Month:
+				<select>
+					<?php 
+						foreach($challenges as $challenge)
+						{
+							$timeParts = getdate($challenge->NiceDate);
+							$challengeDate = $timeParts["month"].", ".$timeParts["year"];
+							echo "<option value=".$challenge->Id.">".$challengeDate."</option>";
+						}
+					?>
+				</select>
+			</div>
+		</form>
+
+		<form action="TOchallenge.php" method="POST">
 			<input type="hidden" name="challengeId" value="<?php echo $currentChallenge->ChallengeId ?>"/>
 			<input type="hidden" name="challengeType" value="<?php echo $currentChallenge->Type ?>"/>
 			<input type="hidden" name="challengeTime" value="<?php echo $currentChallenge->Time ?>"/>
 			<input type="hidden" name="challengeDistance" value="<?php echo $currentChallenge->Distance ?>"/>
 			<input type="hidden" name="action" value="ADD-ATTEMPT"/>
-			<div id="month">
-				Month:
-				<select>
-					<option>May 2014</option>
-					<option>June 2014</option>
-					<option>July 2014</option>
-				</select>
-			</div>
 		
 			<div id="challenge">
 				Challenge:<br><?php echo $currentChallenge->Description; ?>

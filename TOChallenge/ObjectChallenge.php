@@ -12,6 +12,8 @@ class Challenge
 	var $Distance;
 	var $Time;
 	
+	var $NiceDate;
+	
 	function Challenge($challengeId, $name, $month, $year, $type,
 		$description, $distance, $time)
 	{
@@ -23,6 +25,8 @@ class Challenge
 		$this->Description = $description;
 		$this->Distance = $distance;
 		$this->Time = $time;
+		
+		$this->NiceDate = mktime(12, 1, 1, $this->Month, 1, $this->Year);
 	}
 	
 	function Save()
@@ -69,7 +73,7 @@ class Challenge
 	
 	static function GetAll()
 	{
-		$selectSQL = "select * from challenge order by Year, Month, Name";
+		$selectSQL = "select * from challenge order by Year desc, Month desc, Name";
 		$challengeRecords = GetSelectResult($selectSQL);
 	
 		$challenges = array();
