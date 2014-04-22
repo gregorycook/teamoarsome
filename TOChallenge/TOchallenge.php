@@ -113,6 +113,7 @@
 						}
 					?>
 				</select>
+				<input type="SUBMIT" value="GO!">
 			</div>
 		</form>
 
