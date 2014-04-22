@@ -197,8 +197,9 @@
 				</select>
 			</div>
 			
-			<div id="button">
-			<input type="SUBMIT" value="WOOHOO!"></div>s
+			<div id = "button">
+			<input type="SUBMIT" value="WOOHOO!"></div>
+
 		</form>
 		<form action="TOchallenge.php" method="POST">
 			<input type="hidden" name="action" value="SIGN-UP"/>
