@@ -29,6 +29,9 @@ class Attempt
 	
 	function Save()
 	{
+		$deleteSQL = "delete from attempt where AthleteId=".$this->AthleteId." and ChallengeId=".$this->ChallengeId;
+		ExecuteStatement($deleteSQL);
+		
 		$insertSQL = "insert into attempt(AthleteId, ChallengeId, Distance, Time, Weight, Entered, SPM)
 		              values(".$this->AthleteId.",".
 		                       $this->ChallengeId.",".
@@ -62,17 +65,8 @@ class Attempt
 		a.Entered,
 		a.SPM
    FROM attempt a,
-        athlete ath,
-        (select AthleteId,
-                ChallengeId,
-                Max(Entered) AttemptDate
-           from attempt
-       group by AthleteId,
-                ChallengeId) x
- where x.AthleteId = a.AthleteId
-   and a.AthleteId = ath.Id
-   and x.ChallengeId = a.ChallengeId
-   and x.AttemptDate = a.Entered
+        athlete ath
+ where a.AthleteId = ath.Id
    and a.ChallengeId = ".$challengeId."
 order by a.Distance/a.Time desc";
 		

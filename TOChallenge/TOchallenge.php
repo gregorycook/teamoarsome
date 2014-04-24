@@ -4,7 +4,6 @@
 	include_once 'ObjectChallenge.php';
 	
 	$currentChallenge = Challenge::GetCurrent();
-	
 	if($_SERVER['REQUEST_METHOD']=="POST")
 	{
 		if ($_POST["action"] == "ADD-ATTEMPT")
@@ -96,10 +95,10 @@
 	</head>
 	
 	<body>
-
 		<div id="banner" > <img src="img/TObanner.png" alt="logo"></div>
 
 		<form action="TOchallenge.php" method="POST">
+			a
 			<input type="hidden" name="action" value="CHANGE-CHALLENGE"/>
 			<div id="month">
 				Month:
@@ -109,7 +108,7 @@
 						{
 							$timeParts = getdate($challenge->NiceDate);
 							$challengeDate = $timeParts["month"].", ".$timeParts["year"];
-							echo "<option value=".$challenge->Id.">".$challengeDate."</option>";
+							echo "<option value=".$challenge->ChallengeId.">".$challengeDate."</option>";
 						}
 					?>
 				</select>
@@ -192,13 +191,13 @@
 			<div id="weightclass">
 			Weight:
 				<select name="weight">
-					<option value='H'>heavyweight </option>
-					<option value='L'>lightweight </option>
+					<option value='H'>Heavyweight </option>
+					<option value='L'>Lightweight </option>
 
 				</select>
 			</div>
 			
-			<div id = "button">
+			<div id="button">
 			<input type="SUBMIT" value="WOOHOO!"></div>
 
 		</form>
