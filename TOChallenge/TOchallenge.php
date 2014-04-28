@@ -23,6 +23,7 @@
 				$_POST['challengeId'], $distance, $seconds, $_POST['weight'], 0, $_POST['spm']);
 	
 			$attempt->Save();
+			$currentChallenge = Challenge::GetById($_POST["challengeId"]);
 		}
 		else if ($_POST["action"] == "SIGN-UP")
 		{
@@ -31,7 +32,7 @@
 		}
 		else if ($_POST["action"] == "CHANGE-CHALLENGE")
 		{
-			$currentChallenge = Challenge::GetById($_POST["whichChallenge"]);
+			$currentChallenge = Challenge::GetById($_POST["challengeId"]);
 		}
 	}
 	
@@ -39,14 +40,6 @@
 	
 	$challenges = Challenge::GetAll();
 	$attempts = Attempt::GetForChallenge($currentChallenge->ChallengeId);
-
-	function FormatSeconds($seconds)
-	{
-		$minutesPart = floor($seconds/60);
-		$secondPart = ($seconds - 60*$minutesPart);
-		
-		return $minutesPart.":".str_pad(number_format($secondPart, 1), 4, "0", STR_PAD_LEFT);
-	}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -102,12 +95,11 @@
 			<input type="hidden" name="action" value="CHANGE-CHALLENGE"/>
 			<div id="month">
 				Month:
-				<select name="whichChallenge">
+				<select name="challengeId">
 					<?php 
 						foreach($challenges as $challenge)
 						{
-							$timeParts = getdate($challenge->NiceDate);
-							$challengeDate = $timeParts["month"].", ".$timeParts["year"];
+							$challengeDate = Challenge::FormatMonthAndYear($challenge);
 							echo "<option value=".$challenge->ChallengeId.">".$challengeDate."</option>";
 						}
 					?>
@@ -236,8 +228,8 @@
 				echo "<tr>";
 				echo "<td>".$attempt->AthleteName."</td>";
 				echo "<td>".$attempt->Distance."</td>";
-				echo "<td>".FormatSeconds($attempt->Time)."</td>";
-				echo "<td>".FormatSeconds($pace)."</td>";
+				echo "<td>".Challenge::FormatSeconds($attempt->Time)."</td>";
+				echo "<td>".Challenge::FormatSeconds($pace)."</td>";
 				echo "<td>".$attempt->SPM."</td>";
 
 				echo "</tr>";

@@ -92,5 +92,19 @@ class Challenge
 	
 		return $challenges;
 	}
+	
+	static function FormatSeconds($seconds)
+	{
+		$minutesPart = floor($seconds/60);
+		$secondPart = ($seconds - 60*$minutesPart);
+		
+		return $minutesPart.":".str_pad(number_format($secondPart, 1), 4, "0", STR_PAD_LEFT);
+	}
+	
+	static function FormatMonthAndYear($challenge)
+	{
+		$timeParts = getdate($challenge->NiceDate);
+		return $timeParts["month"].", ".$timeParts["year"];	
+	}
 }
 ?>
