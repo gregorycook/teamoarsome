@@ -3,13 +3,13 @@
 	include_once 'ObjectChallenge.php';
 	
 	
-	echo $_SERVER['REQUEST_METHOD']."<br>";
+	//echo $_SERVER['REQUEST_METHOD']."<br>";
 	
-	$athletes = Athlete::GetAll();
-	foreach($athletes as $athlete)
-	{
-		echo $athlete->Name."<br>";
-	}
+	//$athletes = Athlete::GetAll();
+	//foreach($athletes as $athlete)
+	//{
+	//	echo $athlete->Name."<br>";
+	//}
 	
 	//$challenge = new Challenge(1, "30 minutes, no restriction", 6, 2014, 'T', "A KK", 0, 1800);
 	//$challenge->Save();

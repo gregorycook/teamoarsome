@@ -13,12 +13,13 @@
 			if ($_POST['challengeType']=="D")
 			{
 				$seconds = 3600*$_POST['hours'] + 60*$_POST['minutes']
-			         	+ $_POST['seconds'] + $_POST['fracsec']/10;
+			         	+ $_POST['seconds'] + $_POST['fracsec'];
 			}
 			else
 			{
 				$distance = $_POST['meters'];
 			}
+			
 			$attempt = new Attempt(0, $_POST['athlete'], '',
 				$_POST['challengeId'], $distance, $seconds, $_POST['weight'], 0, $_POST['spm']);
 	
