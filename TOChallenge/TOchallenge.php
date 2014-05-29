@@ -215,13 +215,8 @@
 				<td style = 'font-weight:bold'>Time</td>
 				<td style = 'font-weight:bold'>Pace</td>
 				<td style = 'font-weight:bold'>spm</td>
-<!--				<td>pace<br>gain</td>-->
-<!--				<td>pace<br>pts</td>-->
-<!--				<td>gain<br>pts</td>-->
-<!--				<td>all<br>pts</td>-->
-<!--				<td>pace<br>total</td>-->
-<!--				<td>gain<br>total</td>-->
-<!--				<td>all<br>total</td>-->
+				<td style = 'font-weight:bold'>PacePoints</td>
+				<td style = 'font-weight:bold'>GainPoints</td>
 			<?php 
 			foreach($attempts as $attempt)
 			{
@@ -232,6 +227,8 @@
 				echo "<td>".Challenge::FormatSeconds($attempt->Time)."</td>";
 				echo "<td>".Challenge::FormatSeconds($pace)."</td>";
 				echo "<td>".$attempt->SPM."</td>";
+				echo "<td>".$attempt->PacePoints."</td>";
+				echo "<td>".$attempt->GainPoints."</td>";
 
 				echo "</tr>";
 			}
