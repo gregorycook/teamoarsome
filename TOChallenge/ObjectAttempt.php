@@ -76,7 +76,8 @@ class Attempt
         athlete ath
  where a.AthleteId = ath.Id
    and a.ChallengeId = ".$challengeId."
-order by a.Distance/a.Time desc";
+order by a.PacePoints + a.GainPoints desc,
+       a.Distance/a.Time desc";
 		
 		$attemptRecords = GetSelectResult($selectSQL);
 	
@@ -91,7 +92,12 @@ order by a.Distance/a.Time desc";
 	
 	private static function UpdatePoints($challengeId)
 	{
-		Attempt::UpdateGainPoints($challengeId);
+		$challenge = Challenge::GetById($challengeId);
+		
+		if (!($challenge->Month == 5))
+		{
+			Attempt::UpdateGainPoints($challengeId);
+		}
 		Attempt::UpdatePacePoints($challengeId);
 	}
 	

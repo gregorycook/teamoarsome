@@ -4,9 +4,8 @@
 	$challenges = Challenge::GetAll();
 	$currentChallenge = Challenge::GetCurrent();
 	
-	if($_SERVER['REQUEST_METHOD']=="GET")
+	if($_SERVER['REQUEST_METHOD']=="GET" && isset($_GET["ChallengeId"]))
 	{
-		echo $_SERVER['REQUEST_METHOD']=="GET"."<br>";
 		$currentChallenge = Challenge::GetById($_GET["ChallengeId"]);
 	}
 ?>
