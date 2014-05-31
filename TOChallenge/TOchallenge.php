@@ -217,10 +217,14 @@
 				<td style = 'font-weight:bold'>spm</td>
 				<td style = 'font-weight:bold'>PacePoints</td>
 				<td style = 'font-weight:bold'>GainPoints</td>
+				<td style = 'font-weight:bold'>TotalPace</td>
+				<td style = 'font-weight:bold'>TotalGain</td>
+				<td style = 'font-weight:bold'>Total</td>
 			<?php 
 			foreach($attempts as $attempt)
 			{
 				$pace = $attempt->Time / ($attempt->Distance/500);
+				$total = $attempt->TotalGainPoints + $attempt->TotalPacePoints;
 				echo "<tr>";
 				echo "<td>".$attempt->AthleteName."</td>";
 				echo "<td>".$attempt->Distance."</td>";
@@ -229,6 +233,9 @@
 				echo "<td>".$attempt->SPM."</td>";
 				echo "<td>".$attempt->PacePoints."</td>";
 				echo "<td>".$attempt->GainPoints."</td>";
+				echo "<td>".$attempt->TotalPacePoints."</td>";
+				echo "<td>".$attempt->TotalGainPoints."</td>";
+				echo "<td>".$total."</td>";
 
 				echo "</tr>";
 			}

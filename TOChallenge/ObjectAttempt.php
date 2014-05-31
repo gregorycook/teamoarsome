@@ -14,9 +14,11 @@ class Attempt
 	var $SPM;
 	var $PacePoints;
 	var $GainPoints;
+	var $TotalPacePoints;
+	var $TotalGainPoints;
 	
-	function Attempt($attemptId, $athleteId, $athleteName,
-		$challengeId, $distance, $time, $weight, $entered, $spm, $pacePoints, $gainPoints)
+	function Attempt($attemptId, $athleteId, $athleteName, $challengeId, $distance, $time, 
+		$weight, $entered, $spm, $pacePoints, $gainPoints, $totalPacePoints, $totalGainPoints)
 	{
 		$this->AttemptId = $attemptId;
 		$this->AthleteId = $athleteId;
@@ -29,6 +31,8 @@ class Attempt
 		$this->SPM = $spm;
 		$this->PacePoints = $pacePoints;
 		$this->GainPoints = $gainPoints;
+		$this->TotalPacePoints = $totalPacePoints;
+		$this->TotalGainPoints = $totalGainPoints;
 	}
 	
 	function Save()
@@ -55,7 +59,8 @@ class Attempt
 		return new Attempt(
 				$r['Id'], $r['AthleteId'], $r['AthleteName'], 
 				$r['ChallengeId'], $r['Distance'], $r['Time'],
-				$r['Weight'], $r['Entered'], $r['SPM'], $r['PacePoints'], $r['GainPoints']);
+				$r['Weight'], $r['Entered'], $r['SPM'], $r['PacePoints'], $r['GainPoints'],
+				$r['TotalPacePoints'], $r['TotalGainPoints']);
 	}
 	
 	static function GetForChallenge($challengeId)
@@ -71,11 +76,16 @@ class Attempt
 		a.Entered,
 		a.SPM,
 		a.PacePoints,
-		a.GainPoints
+		a.GainPoints,
+		sp.PacePoints TotalPacePoints,
+		sp.GainPoints TotalGainPoints
    FROM attempt a,
-        athlete ath
+        athlete ath,
+        summary_points sp
  where a.AthleteId = ath.Id
    and a.ChallengeId = ".$challengeId."
+   and a.ChallengeId = sp.Id
+   and a.AthleteId = sp.AthleteId
 order by a.PacePoints + a.GainPoints desc,
        a.Distance/a.Time desc";
 		
