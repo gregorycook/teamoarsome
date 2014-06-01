@@ -21,7 +21,7 @@
 			}
 			
 			$attempt = new Attempt(0, $_POST['athlete'], '',
-				$_POST['challengeId'], $distance, $seconds, $_POST['weight'], 0, $_POST['spm'], 0, 0);
+				$_POST['challengeId'], $distance, $seconds, $_POST['weight'], 0, $_POST['spm'], 0, 0, 0, 0);
 	
 			$attempt->Save();
 			$currentChallenge = Challenge::GetById($_POST["challengeId"]);
@@ -223,7 +223,11 @@
 			<?php 
 			foreach($attempts as $attempt)
 			{
-				$pace = $attempt->Time / ($attempt->Distance/500);
+				$pace = "";
+				if ($attempt->Distance > 0)
+				{
+					$pace = $attempt->Time / ($attempt->Distance/500);
+				}
 				$total = $attempt->TotalGainPoints + $attempt->TotalPacePoints;
 				echo "<tr>";
 				echo "<td>".$attempt->AthleteName."</td>";

@@ -67,27 +67,22 @@ class Attempt
 	{
 		$selectSQL = 
 "SELECT a.Id, 
-		a.AthleteId,
+		ath.Id AthleteId,
 		ath.Name AthleteName,
-		a.ChallengeId,
+		sp.ChallengeId,
 		a.Distance,
 		a.Time,
 		a.Weight,
 		a.Entered,
 		a.SPM,
-		a.PacePoints,
-		a.GainPoints,
-		sp.PacePoints TotalPacePoints,
-		sp.GainPoints TotalGainPoints
-   FROM attempt a,
-        athlete ath,
-        summary_points sp
- where a.AthleteId = ath.Id
-   and a.ChallengeId = ".$challengeId."
-   and a.ChallengeId = sp.Id
-   and a.AthleteId = sp.AthleteId
+		ifnull(a.PacePoints, 0) PacePoints,
+		ifnull(a.GainPoints, 0) GainPoints,
+		ifnull(sp.PacePoints, 0) TotalPacePoints,
+		ifnull(sp.GainPoints, 0) TotalGainPoints
+   FROM athlete ath join summary_points sp on (sp.ChallengeId = $challengeId and sp.AthleteId = ath.Id )
+		 left outer join attempt a on (a.AthleteId = ath.Id and a.ChallengeId = sp.ChallengeId)
 order by a.PacePoints + a.GainPoints desc,
-       a.Distance/a.Time desc";
+       sp.PacePoints + sp.GainPoints desc";
 		
 		$attemptRecords = GetSelectResult($selectSQL);
 	
