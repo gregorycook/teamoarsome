@@ -17,6 +17,19 @@ class Attempt
 	var $TotalPacePoints;
 	var $TotalGainPoints;
 	
+	var $SummaryPointViewSql = 
+"select a.AthleteId,
+        c.Id ChallengeId,
+        sum(a.PacePoints) PacePoints,
+        sum(a.GainPoints) GainPoints 
+   from attempt a join challenge cmain 
+                  join challenge c  
+  where (a.ChallengeId = cmain.Id) and 
+        (((c.Month <= 4) and (((cmain.Year = c.Year) and (cmain.Month <= c.Month)) or ((cmain.Year + 1 = c.Year) and (cmain.Month >= 5)))) or 
+	    ((c.Month >= 5) and (cmain.Year = c.Year) and (cmain.Month <= c.Month) and (cmain.Month >= 5)))
+  group by a.AthleteId,
+        c.Id";
+	
 	function Attempt($attemptId, $athleteId, $athleteName, $challengeId, $distance, $time, 
 		$weight, $entered, $spm, $pacePoints, $gainPoints, $totalPacePoints, $totalGainPoints)
 	{
@@ -128,7 +141,7 @@ order by a.PacePoints + a.GainPoints desc,
                 challenge c
           where a.ChallengeId = c.Id) y on (x.AthleteId = y.AthleteId and 12*x.this_year + x.this_month = 12*y.last_year + y.last_month + 1) 
   where ChallengeId = $challengeId
-order by this_pace - last_pace";
+order by this_pace - last_pace desc";
 		
 		$attemptRecords = GetSelectResult($gainSql);
 	
