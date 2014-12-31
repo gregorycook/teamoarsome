@@ -44,14 +44,15 @@
 	$challenges = Challenge::GetAll();
 	$attempts = Attempt::GetForChallenge($currentChallenge->ChallengeId);
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE HTML>
 
 <html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>Team Oarsome Challenge</title>
-		<link rel="stylesheet" type="text/css" href="TOstyle.css">
+		<link rel="stylesheet" type="text/css" href="style/style.css">
 		<link rel="shortcut icon" href="img/TO.ico" />
+		<script type="text/javascript" src="style/accordian.pack.js"></script>
 		<script type="text/javascript">
 
         // copyright 1999 Idocs, Inc. http://www.idocs.com
@@ -90,8 +91,47 @@
 		</script>
 	</head>
 	
-	<body>
-		<div id="banner" > <img src="img/TObanner.png" alt="logo"></div>
+	<body onload="new Accordian('basic-accordian',5,'header_highlight');">
+	
+		  <div id="logo">
+			<img src="style/TObanner.png" alt="TO Banner">
+  		  </div>
+  		  
+  		  <div id = "menu">
+  	  		<div id="basic-accordian" >
+    			<div id="test-header" class="accordion_headings header_highlight">December 2015</div>
+    			<div id="test-content">
+      				<div class="accordion_child">
+      					<p> fish </p>
+      				</div>
+    			</div>
+    			<div id="test1-header" class="accordion_headings">A Page</div>
+    			<div id="test1-content">
+      				<div class="accordion_child">
+						<p>turtle</p>
+      				</div>
+    			</div>
+    			<div id="test2-header" class="accordion_headings">Another Page</div>
+    			<div id="test2-content">
+      				<div class="accordion_child">
+        				<p>crab</p>
+      				</div>
+    			</div>
+    			<div id="test3-header" class="accordion_headings">And Another Page</div>
+    			<div id="test3-content">
+      				<div class="accordion_child">
+						<p>frog</p>
+      				</div>
+    			</div>
+    			<div id="test4-header" class="accordion_headings">Contact Us</div>
+    			<div id="test4-content">
+      				<div class="accordion_child">
+        				<p>gecko</p>
+      				</div>
+    			</div>
+  			</div>
+  		</div>
+  		
 
 		<form action="TOchallenge.php" method="POST">
 			<input type="hidden" name="action" value="CHANGE-CHALLENGE"/>
