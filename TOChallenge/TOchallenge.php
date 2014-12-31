@@ -90,7 +90,6 @@
 	</head>
 	
 	<body onload="new Accordian('basic-accordian',5,'header_highlight');">
-	
 		  <div id="logo">
 			<img src="style/TObanner.png" alt="TO Banner">
   		  </div>
@@ -130,9 +129,8 @@
   			</div>
   		</div>
   		
-
+<!--  
 		<form action="TOchallenge.php" method="POST">
-			a
 			<input type="hidden" name="action" value="CHANGE-CHALLENGE"/>
 			<div id="month">
 				Month:
@@ -148,19 +146,56 @@
 				<input type="SUBMIT" value="GO!">
 			</div>
 		</form>
+-->
+		
+		
+			<div id="challenge">
+				<h1>Challenge:</h1><br><?php echo $currentChallenge->Description; ?>
+				<table>
+			<tr>
+				<td style = 'font-weight:bold'>Rower</td>
+				<td style = 'font-weight:bold'>Distance</td>
+				<td style = 'font-weight:bold'>Time</td>
+				<td style = 'font-weight:bold'>Pace</td>
+				<td style = 'font-weight:bold'>spm</td>
+				<td style = 'font-weight:bold'>Pace Points</td>
+				<td style = 'font-weight:bold'>Gain Points</td>
+				<td style = 'font-weight:bold'>Total Pace</td>
+				<td style = 'font-weight:bold'>Total Gain</td>
+				<td style = 'font-weight:bold'>Total</td>
+			<?php 
+			foreach($attempts as $attempt)
+			{
+				$pace = "";
+				if ($attempt->Distance > 0)
+				{
+					$pace = $attempt->Time / ($attempt->Distance/500);
+				}
+				$total = $attempt->TotalGainPoints + $attempt->TotalPacePoints;
+				echo "<tr>";
+				echo "<td>".$attempt->AthleteName."</td>";
+				echo "<td>".$attempt->Distance."</td>";
+				echo "<td>".Challenge::FormatSeconds($attempt->Time)."</td>";
+				echo "<td>".Challenge::FormatSeconds($pace)."</td>";
+				echo "<td>".$attempt->SPM."</td>";
+				echo "<td>".$attempt->PacePoints."</td>";
+				echo "<td>".$attempt->GainPoints."</td>";
+				echo "<td>".$attempt->TotalPacePoints."</td>";
+				echo "<td>".$attempt->TotalGainPoints."</td>";
+				echo "<td>".$total."</td>";
 
-		<form action="TOchallenge.php" method="POST">
+				echo "</tr>";
+			}
+			?>
+		</table>
+		<div id="entry">	
+			<form action="TOchallenge.php" method="POST">
 			<input type="hidden" name="challengeId" value="<?php echo $currentChallenge->ChallengeId ?>"/>
 			<input type="hidden" name="challengeType" value="<?php echo $currentChallenge->Type ?>"/>
 			<input type="hidden" name="challengeTime" value="<?php echo $currentChallenge->Time ?>"/>
 			<input type="hidden" name="challengeDistance" value="<?php echo $currentChallenge->Distance ?>"/>
 			<input type="hidden" name="action" value="ADD-ATTEMPT"/>
-		
-			<div id="challenge">
-				Challenge:<br><?php echo $currentChallenge->Description; ?>
-			</div>
-
-			<div id="name">
+			<div id="rower">
 			Rower:
 				<select name="athlete">
 					<?php 
@@ -231,61 +266,31 @@
 			</div>
 			
 			<div id="button">
-			<input type="SUBMIT" value="WOOHOO!"></div>
-
-		</form>
-		<form action="TOchallenge.php" method="POST">
-			<input type="hidden" name="action" value="SIGN-UP"/>
-			<div id="enter">
-				Name: <input name="athlete" size="20" maxlength="50">
-				<select name="gender">
-					<option value='M'>Male</option>
-					<option value='F'>Female</option>
-				</select>
+			<input type="SUBMIT" value="WOOHOO!">
 			</div>
-			<div id="signupbutton">
-			<input type="SUBMIT" value="Sign up!">
-			</div>
-		</form>
+			</form>
+		</div>
+		</div>
 
-		<table>
-			<tr>
-				<td style = 'font-weight:bold'>Athlete</td>
-				<td style = 'font-weight:bold'>Distance</td>
-				<td style = 'font-weight:bold'>Time</td>
-				<td style = 'font-weight:bold'>Pace</td>
-				<td style = 'font-weight:bold'>spm</td>
-				<td style = 'font-weight:bold'>PacePoints</td>
-				<td style = 'font-weight:bold'>GainPoints</td>
-				<td style = 'font-weight:bold'>TotalPace</td>
-				<td style = 'font-weight:bold'>TotalGain</td>
-				<td style = 'font-weight:bold'>Total</td>
-			<?php 
-			foreach($attempts as $attempt)
-			{
-				$pace = "";
-				if ($attempt->Distance > 0)
-				{
-					$pace = $attempt->Time / ($attempt->Distance/500);
-				}
-				$total = $attempt->TotalGainPoints + $attempt->TotalPacePoints;
-				echo "<tr>";
-				echo "<td>".$attempt->AthleteName."</td>";
-				echo "<td>".$attempt->Distance."</td>";
-				echo "<td>".Challenge::FormatSeconds($attempt->Time)."</td>";
-				echo "<td>".Challenge::FormatSeconds($pace)."</td>";
-				echo "<td>".$attempt->SPM."</td>";
-				echo "<td>".$attempt->PacePoints."</td>";
-				echo "<td>".$attempt->GainPoints."</td>";
-				echo "<td>".$attempt->TotalPacePoints."</td>";
-				echo "<td>".$attempt->TotalGainPoints."</td>";
-				echo "<td>".$total."</td>";
-
-				echo "</tr>";
-			}
-			?>
-		</table>
 		
+		
+<!--  	
+		<div id="signupform">
+			<form action="TOchallenge.php" method="POST">
+				<input type="hidden" name="action" value="SIGN-UP"/>
+				<div id="enter">
+					Name: <input name="athlete" size="20" maxlength="50">
+					<select name="gender">
+						<option value='M'>Male</option>
+						<option value='F'>Female</option>
+					</select>
+				</div>
+				<div id="signupbutton">
+				<input type="SUBMIT" value="Sign up!">
+				</div>
+			</form>
+		</div>
+-->	
 </body>
 </head>
 </html>

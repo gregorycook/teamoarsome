@@ -9,42 +9,11 @@ body
 { font-family: "trebuchet ms", arial, sans-serif;
   font-size: .84em;
   color: #DD753C;
-  line-height: 1.4em;
   background: #0E3050;
-  width: 100px;
-  margin: 10px auto 0px auto;}
+  position: absolute;}
+
   
-h1, h2, h3, h4, h5, h6 
-{ color: #DD753C;
-  letter-spacing: 0em;
-  padding: 0 0 5px 0;}
 
-h1, h2, h3
-{ font: normal 100% 'lucida sans', arial;
-  margin: 0 0 15px 0;
-  padding: 0 0 5px 0;
-  color: #000;}
-
-h2
-{ font-size: 110%;
-  padding: 9px 0 5px 0;
-  color: #DD753C;}
-
-h3
-{ font-size: 100%;
-  padding: 5px 0 0 0;}
-
-h4, h6
-{ color: #DD753C;
-  padding: 0 0 5px 0;
-  font: normal 100% arial;
-  text-transform: uppercase;}
-
-h5, h6
-{ color: #DD753C;
-  font: normal 95% arial;
-  letter-spacing: normal;
-  padding: 0 0 15px 0;}
 
 a, a:hover
 { outline: none;
@@ -61,22 +30,6 @@ blockquote
   padding: 10px 20px 0 20px;
   border: 1px solid #E5E5DB;
   background: #FFF;}
-
-ul
-{ margin: 2px 0 12px 0;}
-
-ul li
-{ list-style-type: none;
-  background: url(bullet.png) no-repeat;
-  margin: 0 0 0 0; 
-  padding: 0 0 4px 25px;
-  line-height: 1.5em;}
-
-ol
-{ margin: 8px 0 22px 0;}
-
-ol li
-{ margin: 0 0 11px 20px;}
 
 .left
 { float: left;
@@ -125,15 +78,16 @@ ol li
   height: 78px;
   background: transparent;
   color: #DD753C;
-  position: relative;
-  z-index: 10;
-  padding-top: 15px;}
+  margin-top: 24px;
+  margin-left: 10px;
+  }
 
-#logo h1
-{ font: normal 200% 'century gothic', arial;
-  padding: 0 0 0 20px;
-  margin: 0;
-  color: #DD753C;}
+#menu
+{  width: 200px;
+	padding: 0, 50px, 0, 50px;
+	margin-top: 50px;
+	margin-left: 25px;
+	float: left;}
 
 #footer p
 { letter-spacing: 0.1em;
@@ -207,15 +161,100 @@ ol li
   margin: 0 0 20px 0;}
   
 table
-{ margin: 10px 0 30px 0;}
+{ font-size:  12px;
+  padding-top: 10px;
+  padding-bottom:  10px;}
 
 table tr th, table tr td
 { background: #EFEFEF;
   color: #111;
-  padding: 7px 4px;
-  text-align: left;}
+  padding: 4px 4px;
+  text-align: center;
+  width: 100px;}
   
 table tr td
 { background: #F8F8F8;
   color: #47433F;
   border-top: 1px solid #FFF;}
+  
+div#rower
+	{
+	background-color: #0E3050;
+	width: 215px;
+	margin-top:  0px;
+	margin-left:  0px;}
+	
+div#challenge{
+	background-color: #0E3050;
+	width: 600px;
+	height:  400px;
+	margin-top:  10px;
+	margin-left:  250px;
+	font-size:  18px;
+	}
+div#signupform
+{   margin-top: 1000px;
+	margin-left: 1000px;}
+
+div#meters
+	{
+	background-color: #0E3050;
+	width: 215px;
+	height:  51px;
+	margin-top:  0px;
+	margin-left:  0px;
+	}
+div#time
+	{
+	background-color: #0E3058;
+	margin-top:  0px;
+	margin-left:  0px;
+	}
+	
+div#strokerate
+	{
+	background-color: #0E3050;
+	width: 200px;
+	margin-top:  0px;
+	margin-left:  0px;
+	}
+div#weightclass
+	{
+	background-color: #0E3050;
+	width: 200px;
+	margin-top:  0px;
+	margin-left:  0px;
+	}
+	
+div#button
+	{
+	background-color: #0E3050;
+	width: 200px;
+	margin-top:  0px;
+	margin-left:  0px;
+	}
+div#enter
+	{
+	background-color: #0E3050;
+	width: 300px;
+	margin-top:  0px;
+	margin-left:  0px;
+	}
+div#signupbutton
+	{
+	background-color: #0E3050;
+	width: 200px;
+	height:  51px;
+	margin-top:  0px;
+	margin-left:  1000px;
+	}
+
+div#entry
+{  background-color: #0E3050;
+   font-size: .64em;
+   line-height: 2.3em;
+	}
+	
+h1
+{ font-size: 120%;
+  padding: 9px 0 5px 0;}
