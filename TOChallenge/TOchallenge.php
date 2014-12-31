@@ -4,6 +4,8 @@
 	include_once 'ObjectChallenge.php';
 	
 	$currentChallenge = Challenge::GetCurrent();
+	$currentChallengeId = $currentChallenge->ChallengeId;
+	
 	if($_SERVER['REQUEST_METHOD']=="POST")
 	{
 		if ($_POST["action"] == "ADD-ATTEMPT")
@@ -20,8 +22,8 @@
 				$distance = $_POST['meters'];
 			}
 			
-			$attempt = new Attempt(0, $_POST['athlete'], '',
-				$_POST['challengeId'], $distance, $seconds, $_POST['weight'], 0, $_POST['spm'], 0, 0, 0, 0);
+			$attempt = new Attempt($_POST['athlete'], $_POST['challengeId'], 
+				$distance, $seconds, $_POST['weight'], $_POST['spm']);
 	
 			$attempt->Save();
 			$currentChallenge = Challenge::GetById($_POST["challengeId"]);
@@ -92,7 +94,6 @@
 		<div id="banner" > <img src="img/TObanner.png" alt="logo"></div>
 
 		<form action="TOchallenge.php" method="POST">
-			a
 			<input type="hidden" name="action" value="CHANGE-CHALLENGE"/>
 			<div id="month">
 				Month:
@@ -109,6 +110,7 @@
 			</div>
 		</form>
 
+		<?php if ($currentChallenge->ChallengeId == $currentChallengeId) {?>
 		<form action="TOchallenge.php" method="POST">
 			<input type="hidden" name="challengeId" value="<?php echo $currentChallenge->ChallengeId ?>"/>
 			<input type="hidden" name="challengeType" value="<?php echo $currentChallenge->Type ?>"/>
@@ -135,44 +137,36 @@
 			<?php 
 			if ($currentChallenge->Type == "T")
 			{
-				echo '<div id="meters">
-				Meters <input name="meters" size="5" maxlength="5"
-				onkeypress="return numbersonly(this, event)"> 
-				</div>';
+				echo '<div id="meters">Meters <input name="meters" size="5" maxlength="5" onkeypress="return numbersonly(this, event)"></div>';
 			}
 			else
 			{
-				echo '<div id="time"> 
-					Hours: <select name="hours">';
+				echo '<div id="time">Hours: <select name="hours">';
 				for ($x=0; $x<=3; $x++)
   					{
   					echo "<option>$x</option>";
   					} 
-				echo '</select>
-					Min: <select name="minutes">';
+				echo '</select>Min: <select name="minutes">';
 				for ($x=0; $x<=59; $x++)
   				{
   					echo "<option>$x</option>";
   				} 
 
-				echo '</select>
-						Sec:  <select name="seconds">';
+				echo '</select>Sec:  <select name="seconds">';
 
 				for ($x=0; $x<=59; $x++)
   				{
   					echo "<option>$x</option>";
   				} 
 
-					echo '</select>
-						<select name="fracsec">';
+					echo '</select><select name="fracsec">';
 
 				for ($x=0; $x<=9; $x++)
   				{
   					$y=$x*.1;
   					echo "<option>$y</option>";
   				} 
-				echo '</select>
-					</div>';
+				echo '</select></div>';
 			}
 			?>
 
@@ -194,6 +188,7 @@
 			<input type="SUBMIT" value="WOOHOO!"></div>
 
 		</form>
+		<?php }?>
 		<form action="TOchallenge.php" method="POST">
 			<input type="hidden" name="action" value="SIGN-UP"/>
 			<div id="enter">

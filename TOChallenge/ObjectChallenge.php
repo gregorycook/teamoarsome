@@ -14,7 +14,7 @@ class Challenge
 	
 	var $NiceDate;
 	
-	function Challenge($challengeId, $name, $month, $year, $type,
+	function __construct($challengeId, $name, $month, $year, $type,
 		$description, $distance, $time)
 	{
 		$this->ChallengeId = $challengeId;
@@ -43,7 +43,7 @@ class Challenge
 		                        $this->Distance.",".
 		                        $this->Time.")";
 
-		ExecuteStatement($insertSQL);
+		return ExecuteStatement($insertSQL);
 	}
 
 	function MakeCurrent()
@@ -54,7 +54,23 @@ class Challenge
 		$insertNewCurrent = "insert into current(ChallengeId) values (".$this->ChallengeId.")";
 		ExecuteStatement($insertNewCurrent);
 	}
-
+	
+	function ChallengeYear()
+	{
+		$result = $this->Year;
+		if ($this->Month <= 4)
+		{
+			$result = $this->Year - 1;
+		}
+		
+		return $result;
+	}
+	
+	function ChallengeNumber()
+	{
+		return ($this->Month - 5) % 12;
+	}
+	
 	private static function CreateFromRecord($r)
 	{
 		return new Challenge(
@@ -77,6 +93,13 @@ class Challenge
 		$challengeRecord = GetSelectResult($selectSQL);
 
 		return Challenge::CreateFromRecord($challengeRecord[0]);
+	}
+	
+	static function DeleteById($challengeId)
+	{
+		$deleteSQL = "delete from challenge where Id = ".$challengeId;
+
+		ExecuteStatement($deleteSQL);	
 	}
 	
 	static function GetAll()

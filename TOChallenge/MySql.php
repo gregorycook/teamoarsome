@@ -47,8 +47,11 @@
 		if (!empty($mysqli))
 		{
 			mysqli_query($mysqli, $statement);
+			$result = mysqli_insert_id($mysqli);
 			mysqli_commit($mysqli);
 		}
 		mysqli_close($mysqli);
+		
+		return $result;
 	}
 ?>

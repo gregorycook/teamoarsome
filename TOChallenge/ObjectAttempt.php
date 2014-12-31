@@ -30,22 +30,15 @@ class Attempt
   group by a.AthleteId,
         c.Id";
 	
-	function Attempt($attemptId, $athleteId, $athleteName, $challengeId, $distance, $time, 
-		$weight, $entered, $spm, $pacePoints, $gainPoints, $totalPacePoints, $totalGainPoints)
+	function __construct($athleteId, $challengeId, $distance, $time, 
+		$weight, $spm)
 	{
-		$this->AttemptId = $attemptId;
 		$this->AthleteId = $athleteId;
-		$this->AthleteName = $athleteName;
 		$this->ChallengeId = $challengeId;
 		$this->Distance = $distance;
 		$this->Time = $time;
 		$this->Weight = $weight;
-		$this->Entered = $entered;
 		$this->SPM = $spm;
-		$this->PacePoints = $pacePoints;
-		$this->GainPoints = $gainPoints;
-		$this->TotalPacePoints = $totalPacePoints;
-		$this->TotalGainPoints = $totalGainPoints;
 	}
 	
 	function Save()
@@ -69,11 +62,18 @@ class Attempt
 
 	private static function CreateFromRecord($r)
 	{
-		return new Attempt(
-				$r['Id'], $r['AthleteId'], $r['AthleteName'], 
-				$r['ChallengeId'], $r['Distance'], $r['Time'],
-				$r['Weight'], $r['Entered'], $r['SPM'], $r['PacePoints'], $r['GainPoints'],
-				$r['TotalPacePoints'], $r['TotalGainPoints']);
+		$attempt = new Attempt($r['AthleteId'], $r['ChallengeId'], $r['Distance'], $r['Time'],
+				$r['Weight'], $r['SPM']);
+		
+		$attempt->Id = $r['Id'];
+		$attempt->AthleteName = $r['AthleteName'];
+		$attempt->Entered = $r['Entered'];
+		$attempt->PacePoints = $r['PacePoints'];
+		$attempt->GainPoints = $r['GainPoints'];
+		$attempt->TotalPacePoints = $r['TotalPacePoints'];
+		$attempt->TotalGainPoints = $r['TotalGainPoints'];
+		
+		return $attempt;
 	}
 	
 	static function GetForChallenge($challengeId)
@@ -94,7 +94,7 @@ class Attempt
 		ifnull(sp.GainPoints, 0) TotalGainPoints
    FROM athlete ath join summary_points sp on (sp.ChallengeId = $challengeId and sp.AthleteId = ath.Id )
 		 left outer join attempt a on (a.AthleteId = ath.Id and a.ChallengeId = sp.ChallengeId)
-order by a.PacePoints + a.GainPoints desc,
+order by ifnull(a.Time/(a.Distance/500), 10000),
        sp.PacePoints + sp.GainPoints desc";
 		
 		$attemptRecords = GetSelectResult($selectSQL);
