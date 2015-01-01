@@ -120,8 +120,12 @@
 							if ($foundCurrent == FALSE && $challenge->ChallengeId == $currentChallenge->ChallengeId)
 							{
 								$foundCurrent = TRUE;
-								
-				    			echo '<div id="current-header" class="accordion_headings">Current Challenge</div>';
+								$divClass = "accordion_headings";
+								if ($currentChallengeId == $selectedChallengeId)
+								{
+									$divClass = "accordion_headings header_highlight";
+								}
+				    			echo '<div id="current-header" class="'.$divClass.'">Current Challenge</div>';
 					    			echo '<div id="current-content">';
 						      			echo '<div class="accordion_child">';
 						      				echo '<a class="navlink" href="http://localhost/teamoarsome/TOChallenge/TOchallenge.php">'.FormatChallenge($challenge).'</a>';
@@ -134,7 +138,15 @@
 									$sectionYear = $challenge->ChallengeYear();
 									
 									echo '</div>';
-					    			echo '<div id="section'.$sectionYear.'-header" class="accordion_headings">'.FormatSection($challenge).'</div>';
+								
+									$divClass = "accordion_headings";
+									if ($challenge->ChallengeYear() == $selectedChallenge->ChallengeYear() &&
+									    $currentChallengeId != $selectedChallengeId)
+									{
+										$divClass = "accordion_headings header_highlight";
+									}
+									
+					    			echo '<div id="section'.$sectionYear.'-header" class="'.$divClass.'">'.FormatSection($challenge).'</div>';
 					    			echo '<div id="section'.$sectionYear.'-content">';
 								}
 								
@@ -150,7 +162,9 @@
 		
 		
 			<div id="challenge">
-				<h1>Challenge:</h1><br><?php echo $selectedChallenge->Description; ?>
+				<br><?php echo $selectedChallenge->FormattedDate(); ?>
+				<br><?php echo $selectedChallenge->Name; ?>
+				<br><?php echo $selectedChallenge->Description; ?>
 				<table>
 			<tr>
 				<td style = 'font-weight:bold'>Rower</td>

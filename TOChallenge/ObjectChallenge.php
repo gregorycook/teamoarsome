@@ -71,6 +71,11 @@ class Challenge
 		return ($this->Month - 5) % 12;
 	}
 	
+	function FormattedDate()
+	{
+		return Challenge::FormatMonthAndYear($this);
+	}
+	
 	private static function CreateFromRecord($r)
 	{
 		return new Challenge(
@@ -127,7 +132,7 @@ class Challenge
 	static function FormatMonthAndYear($challenge)
 	{
 		$timeParts = getdate($challenge->NiceDate);
-		return $timeParts["month"].", ".$timeParts["year"];	
+		return $timeParts["month"]." ".$timeParts["year"];	
 	}
 }
 ?>
