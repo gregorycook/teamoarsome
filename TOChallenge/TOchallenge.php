@@ -6,6 +6,9 @@
 	$currentChallenge = Challenge::GetCurrent();
 	$currentChallengeId = $currentChallenge->ChallengeId;
 	
+	$selectedChallenge = $currentChallenge;
+	$selectedChallengeId = $currentChallengeId;
+	
 	if($_SERVER['REQUEST_METHOD']=="POST")
 	{
 		if ($_POST["action"] == "ADD-ATTEMPT")
@@ -33,16 +36,27 @@
 			$newAthlete = new Athlete(0, $_POST['athlete'], $_POST['gender']);
 			$newAthlete->Save();
 		}
-		else if ($_POST["action"] == "CHANGE-CHALLENGE")
-		{
-			$currentChallenge = Challenge::GetById($_POST["challengeId"]);
-		}
+	}
+	elseif ($_SERVER['REQUEST_METHOD']=="GET" && isset($_GET['id']))
+	{
+		$selectedChallenge = Challenge::GetById($_GET['id']);
+		$selectedChallengeId = $selectedChallenge->ChallengeId;
 	}
 	
 	$athletes = Athlete::GetAll();
 	
 	$challenges = Challenge::GetAll();
-	$attempts = Attempt::GetForChallenge($currentChallenge->ChallengeId);
+	$attempts = Attempt::GetForChallenge($selectedChallengeId);
+	
+	function FormatSection($challenge)
+	{
+		return $challenge->ChallengeYear()." - ".($challenge->ChallengeYear() + 1);
+	}
+	
+	function FormatChallenge($challenge)
+	{
+		return Challenge::FormatMonthAndYear($challenge)."<br>".$challenge->Name;
+	}
 ?>
 <!DOCTYPE HTML>
 
@@ -52,7 +66,7 @@
 		<title>Team Oarsome Challenge</title>
 		<link rel="stylesheet" type="text/css" href="style/style.css">
 		<link rel="shortcut icon" href="img/TO.ico" />
-		<script type="text/javascript" src="style/accordian.pack.js"></script>
+		<script type="text/javascript" src="style/nav.js"></script>
 		<script type="text/javascript">
 
         // copyright 1999 Idocs, Inc. http://www.idocs.com
@@ -98,61 +112,45 @@
   		  
   		  <div id = "menu">
   	  		<div id="basic-accordian" >
-    			<div id="test-header" class="accordion_headings header_highlight">December 2015</div>
-    			<div id="test-content">
-      				<div class="accordion_child">
-      					<p> fish </p>
-      				</div>
-    			</div>
-    			<div id="test1-header" class="accordion_headings">A Page</div>
-    			<div id="test1-content">
-      				<div class="accordion_child">
-						<p>turtle</p>
-      				</div>
-    			</div>
-    			<div id="test2-header" class="accordion_headings">Another Page</div>
-    			<div id="test2-content">
-      				<div class="accordion_child">
-        				<p>crab</p>
-      				</div>
-    			</div>
-    			<div id="test3-header" class="accordion_headings">And Another Page</div>
-    			<div id="test3-content">
-      				<div class="accordion_child">
-						<p>frog</p>
-      				</div>
-    			</div>
-    			<div id="test4-header" class="accordion_headings">Contact Us</div>
-    			<div id="test4-content">
-      				<div class="accordion_child">
-        				<p>gecko</p>
-      				</div>
-    			</div>
-  			</div>
-  		</div>
-  		
-<!--  
-		<form action="TOchallenge.php" method="POST">
-			<input type="hidden" name="action" value="CHANGE-CHALLENGE"/>
-			<div id="month">
-				Month:
-				<select name="challengeId">
 					<?php 
+						$sectionYear = 0;
+						$foundCurrent = FALSE;
 						foreach($challenges as $challenge)
 						{
-							$challengeDate = Challenge::FormatMonthAndYear($challenge);
-							echo "<option value=".$challenge->ChallengeId.">".$challengeDate."</option>";
+							if ($foundCurrent == FALSE && $challenge->ChallengeId == $currentChallenge->ChallengeId)
+							{
+								$foundCurrent = TRUE;
+								
+				    			echo '<div id="current-header" class="accordion_headings">Current Challenge</div>';
+					    			echo '<div id="current-content">';
+						      			echo '<div class="accordion_child">';
+						      				echo '<a class="navlink" href="http://localhost/teamoarsome/TOChallenge/TOchallenge.php">'.FormatChallenge($challenge).'</a>';
+						      			echo '</div>';
+							}
+							elseif ($foundCurrent)
+							{
+								if ($sectionYear != $challenge->ChallengeYear())
+								{
+									$sectionYear = $challenge->ChallengeYear();
+									
+									echo '</div>';
+					    			echo '<div id="section'.$sectionYear.'-header" class="accordion_headings">'.FormatSection($challenge).'</div>';
+					    			echo '<div id="section'.$sectionYear.'-content">';
+								}
+								
+						      			echo '<div class="accordion_child">';
+						      				echo '<a class="navlink" href="http://localhost/teamoarsome/TOChallenge/TOchallenge.php?id='.$challenge->ChallengeId.'">'.FormatChallenge($challenge).'</a>';
+						      			echo '</div>';
+							}
 						}
+						echo '</div>';
 					?>
-				</select>
-				<input type="SUBMIT" value="GO!">
-			</div>
-		</form>
--->
+  			</div>
+  		</div>
 		
 		
 			<div id="challenge">
-				<h1>Challenge:</h1><br><?php echo $currentChallenge->Description; ?>
+				<h1>Challenge:</h1><br><?php echo $selectedChallenge->Description; ?>
 				<table>
 			<tr>
 				<td style = 'font-weight:bold'>Rower</td>
@@ -191,7 +189,7 @@
 			?>
 		</table>
 		<div id="entry">	
-            <?php if ($currentChallenge->ChallengeId == $currentChallengeId) {?>
+            <?php if ($selectedChallenge->ChallengeId == $currentChallengeId) {?>
 			<form action="TOchallenge.php" method="POST">
 			<input type="hidden" name="challengeId" value="<?php echo $currentChallenge->ChallengeId ?>"/>
 			<input type="hidden" name="challengeType" value="<?php echo $currentChallenge->Type ?>"/>
@@ -267,26 +265,6 @@
             <?php }?>
 		</div>
 		</div>
-
-		
-		
-<!--  	
-		<div id="signupform">
-			<form action="TOchallenge.php" method="POST">
-				<input type="hidden" name="action" value="SIGN-UP"/>
-				<div id="enter">
-					Name: <input name="athlete" size="20" maxlength="50">
-					<select name="gender">
-						<option value='M'>Male</option>
-						<option value='F'>Female</option>
-					</select>
-				</div>
-				<div id="signupbutton">
-				<input type="SUBMIT" value="Sign up!">
-				</div>
-			</form>
-		</div>
--->	
 </body>
 </head>
 </html>
