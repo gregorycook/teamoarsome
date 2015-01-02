@@ -162,21 +162,21 @@
 		
 		
 			<div id="challenge">
-				<br><?php echo $selectedChallenge->FormattedDate(); ?>
-				<br><?php echo $selectedChallenge->Name; ?>
-				<br><?php echo $selectedChallenge->Description; ?>
+				<br><h1><?php echo $selectedChallenge->FormattedDate(); ?></h1>
+				<h2><?php echo $selectedChallenge->Name; ?></h2>
+				<br><blockquote><?php echo $selectedChallenge->Description; ?></blockquote>
 				<table>
 			<tr>
-				<td style = 'font-weight:bold'>Rower</td>
-				<td style = 'font-weight:bold'>Distance</td>
-				<td style = 'font-weight:bold'>Time</td>
-				<td style = 'font-weight:bold'>Pace</td>
-				<td style = 'font-weight:bold'>spm</td>
-				<td style = 'font-weight:bold'>Pace Points</td>
-				<td style = 'font-weight:bold'>Gain Points</td>
-				<td style = 'font-weight:bold'>Total Pace</td>
-				<td style = 'font-weight:bold'>Total Gain</td>
-				<td style = 'font-weight:bold'>Total</td>
+				<th>Rower</th>
+				<th>Distance</th>
+				<th>Time</th>
+				<th>Pace</th>
+				<th>spm</th>
+				<th>Pace Points</th>
+				<th>Gain Points</th>
+				<th>Total Pace</th>
+				<th>Total Gain</th>
+				<th>Total</th>
 			<?php 
 			foreach($attempts as $attempt)
 			{

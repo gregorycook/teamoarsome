@@ -12,39 +12,21 @@ body
   background: #0E3050;
   position: absolute;}
 
-  
+h1
+{ font-size: 120%;}
 
+h2
+{  font-size: 100%;}
+
+blockquote
+{ font-size: 70%;
+  margin-left: 25px;}
 
 a, a:hover
 { outline: none;
   text-decoration: none;
-  border-bottom: 1px dashed #000;
+  border-bottom: none;
   color: #000;}
-
-p
-{ line-height: 1.5em;
-  padding-bottom: 17px;}
-
-blockquote
-{ margin: 20px 0; 
-  padding: 10px 20px 0 20px;
-  border: 1px solid #E5E5DB;
-  background: #FFF;}
-
-.left
-{ float: left;
-  width: auto;
-  margin-right: 10px;}
-
-.right
-{ float: right; 
-  width: auto;
-  margin-left: 10px;}
-
-.center
-{ display: block;
-  text-align: center;
-  margin: 20px auto;}
 
 #basic-accordian
 { padding: 0px;
@@ -52,8 +34,8 @@ blockquote
 
 .accordion_headings
 { padding: 10px 25px 10px 25px;
-  background: #E1E1E1;
-  color: #DD753C;
+  background: #DD753C;
+  color: #0E3050;
   border-top: 1px solid #FFF;
   border-bottom: 1px solid #CCC;
   cursor: pointer;
@@ -66,16 +48,31 @@ blockquote
   color: #000;}
 
 .accordion_child
-{ padding: 25px;
+{ padding: 5px;
   background: #FFF;}
 
 .header_highlight
-{ background: #E1E1E1;
-  color: #DD753C;}
+{ background: #DD753C;
+  color: #0E3050;}
+
+table
+{ font-size:  12px;
+  padding-top: 10px;
+  padding-bottom:  10px;
+  text-align: center;}
+
+table tr th, table tr td
+{ background: #FFF;
+  color: #47433F;
+  border-top: 1px solid #FFF;
+  width: 100px;
+  padding: 4px 4px;}
+  
+table tr th
+{ font-weight: bold;}
 
 #logo
 { width: 100%;
-  height: 78px;
   background: transparent;
   color: #DD753C;
   margin-top: 24px;
@@ -88,173 +85,34 @@ blockquote
 	margin-top: 50px;
 	margin-left: 25px;
 	float: left;}
-
-#footer p
-{ letter-spacing: 0.1em;
-  text-transform: uppercase;
-  text-align: center;
-  padding: 20px;
-  color: #444;
-  font-size: 90%;}
-
-#footer a, #footer a:hover
-{ color: #76786A;
-  text-decoration: none;
-  border: 0;}
-
-.search
-{ color: #5D5D5D; 
-  border: 1px solid #BBB; 
-  width: 134px; 
-  padding: 4px; 
-  font: 100% arial, sans-serif;}
-
-.form_settings
-{ margin: 15px 0 0 0;}
-
-.form_settings p
-{ padding: 0 0 4px 0;}
-
-.form_settings span
-{ float: left; 
-  width: 200px; 
-  text-align: left;}
   
-.form_settings input, .form_settings textarea
-{ padding: 5px; 
-  width: 299px; 
-  font: 100% arial; 
-  border: 1px solid #E5E5DB; 
-  background: #FFF; 
-  color: #47433F;}
-  
-.form_settings .submit
-{ font: 100% arial; 
-  border: 0; 
-  width: 99px; 
-  margin: 0 0 0 212px; 
-  height: 33px;
-  padding: 2px 0 3px 0;
-  cursor: pointer; 
-  background: #EEE; 
-  color: #111;}
-
-.form_settings textarea, .form_settings select
-{ font: 100% arial; 
-  width: 299px;}
-
-.form_settings select
-{ width: 310px;}
-
-.form_settings .checkbox
-{ margin: 4px 0; 
-  padding: 0; 
-  width: 14px;
-  border: 0;
-  background: none;}
-
-.separator
-{ width: 100%;
-  height: 0;
-  border-top: 1px solid #D9D5CF;
-  border-bottom: 1px solid #FFF;
-  margin: 0 0 20px 0;}
-  
-table
-{ font-size:  12px;
-  padding-top: 10px;
-  padding-bottom:  10px;}
-
-table tr th, table tr td
-{ background: #EFEFEF;
-  color: #111;
-  padding: 4px 4px;
-  text-align: center;
-  width: 100px;}
-  
-table tr td
-{ background: #F8F8F8;
-  color: #47433F;
-  border-top: 1px solid #FFF;}
-  
-div#rower
-	{
-	background-color: #0E3050;
-	width: 215px;
-	margin-top:  0px;
-	margin-left:  0px;}
-	
-div#challenge{
-	background-color: #0E3050;
-	width: 600px;
+#challenge
+{	width: 600px;
 	height:  400px;
 	margin-top:  10px;
 	margin-left:  250px;
-	font-size:  18px;
-	}
-div#signupform
-{   margin-top: 1000px;
-	margin-left: 1000px;}
-
-div#meters
-	{
-	background-color: #0E3050;
-	width: 215px;
-	height:  51px;
-	margin-top:  0px;
-	margin-left:  0px;
-	}
-div#time
-	{
-	background-color: #0E3058;
-	margin-top:  0px;
-	margin-left:  0px;
-	}
+	font-size:  18px;}
 	
-div#strokerate
-	{
-	background-color: #0E3050;
-	width: 200px;
-	margin-top:  0px;
-	margin-left:  0px;
-	}
-div#weightclass
-	{
-	background-color: #0E3050;
-	width: 200px;
-	margin-top:  0px;
-	margin-left:  0px;
-	}
+	
+#entry
+{  font-size: .64em;
+   line-height: 2.3em;}
+   
+#rower
+	{}
+	
+#meters
+	{}
+	
+#time
+	{}
+	
+#strokerate
+	{}
+	
+#weightclass
+	{}
 	
 div#button
-	{
-	background-color: #0E3050;
-	width: 200px;
-	margin-top:  0px;
-	margin-left:  0px;
-	}
-div#enter
-	{
-	background-color: #0E3050;
-	width: 300px;
-	margin-top:  0px;
-	margin-left:  0px;
-	}
-div#signupbutton
-	{
-	background-color: #0E3050;
-	width: 200px;
-	height:  51px;
-	margin-top:  0px;
-	margin-left:  1000px;
-	}
-
-div#entry
-{  background-color: #0E3050;
-   font-size: .64em;
-   line-height: 2.3em;
-	}
-	
-h1
-{ font-size: 120%;
-  padding: 9px 0 5px 0;}
+	{}
+	 
