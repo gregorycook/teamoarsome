@@ -25,7 +25,18 @@
 		
 	static function GetAll()
 		{
-			$selectSQL = "select * from athlete order by Name";
+			$selectSQL = "
+select ath.*
+  from athlete ath left outer join (select a.AthleteId,
+                                           count(1) thingy
+                                      from attempt a,
+                                           challenge c
+                                     where a.ChallengeId = c.Id
+                                       and (12 * year(curdate()) + month(curdate()) - 24 < c.Month + (12 * c.Year))
+                                  group by a.AthleteId) x
+                   on x.AthleteId = ath.Id
+order by isnull(x.thingy),
+       ath.Name";
 			$athleteRecords = GetSelectResult($selectSQL);
 			
 			$athletes = array();

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: teamoarsome.cakewood.net
--- Generation Time: Dec 30, 2014 at 10:15 AM
+-- Generation Time: Jan 04, 2015 at 03:28 PM
 -- Server version: 5.1.56
 -- PHP Version: 5.3.27
 
@@ -12,8 +12,6 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 -- Database: `teamoarsome`
 --
-CREATE DATABASE `teamoarsome` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `teamoarsome`;
 
 -- --------------------------------------------------------
 
@@ -21,7 +19,8 @@ USE `teamoarsome`;
 -- Table structure for table `athlete`
 --
 
-CREATE TABLE IF NOT EXISTS `athlete` (
+DROP TABLE IF EXISTS `athlete`;
+CREATE TABLE `athlete` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Name` varchar(50) NOT NULL,
   `Gender` char(1) NOT NULL,
@@ -53,7 +52,8 @@ INSERT INTO `athlete` (`Id`, `Name`, `Gender`) VALUES
 -- Table structure for table `attempt`
 --
 
-CREATE TABLE IF NOT EXISTS `attempt` (
+DROP TABLE IF EXISTS `attempt`;
+CREATE TABLE `attempt` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `AthleteId` int(11) NOT NULL,
   `ChallengeId` int(11) NOT NULL,
@@ -174,7 +174,8 @@ INSERT INTO `attempt` (`Id`, `AthleteId`, `ChallengeId`, `Distance`, `Time`, `We
 -- Table structure for table `challenge`
 --
 
-CREATE TABLE IF NOT EXISTS `challenge` (
+DROP TABLE IF EXISTS `challenge`;
+CREATE TABLE `challenge` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Name` varchar(50) NOT NULL,
   `Month` int(11) NOT NULL,
@@ -184,14 +185,14 @@ CREATE TABLE IF NOT EXISTS `challenge` (
   `Distance` int(11) DEFAULT NULL,
   `Time` decimal(6,1) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=36 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=37 ;
 
 --
 -- Dumping data for table `challenge`
 --
 
 INSERT INTO `challenge` (`Id`, `Name`, `Month`, `Year`, `Type`, `Description`, `Distance`, `Time`) VALUES
-(16, 'April Challenge:  30 minutes, unrestricted', 4, 2014, 'T', 'Row as many meters as you can in 30 minutes with no rate restrictions!', 0, 1800.0),
+(16, '30 minutes, unrestricted', 4, 2014, 'T', 'Row as many meters as you can in 30 minutes with no rate restrictions!', 0, 1800.0),
 (17, '3 x 5K, 5'' rest', 5, 2013, 'D', '3 x 5K, 5'' rest', 15000, 0.0),
 (18, '6 x 5'', 2'' rest', 6, 2013, 'T', '6 x 5'', 2'' rest (Enter the meters you rowed in 30'')', NULL, 1800.0),
 (19, '10K', 7, 2013, 'D', '10K', 10000, 0.0),
@@ -200,17 +201,18 @@ INSERT INTO `challenge` (`Id`, `Name`, `Month`, `Year`, `Type`, `Description`, `
 (22, '20 x 30", 30" rest', 10, 2013, 'T', '20 x 30", 30" rest', NULL, 600.0),
 (23, '4 x 750, 2'' rest', 11, 2013, 'D', '4 x 750, 2'' rest', 3000, NULL),
 (24, '30r20', 12, 2013, 'T', '30r20', NULL, 1800.0),
-(25, '8 x 500, 2'' rest', 1, 2014, 'D', '8 x 500, 2'' rest', 4000, NULL),
-(26, '2K', 2, 2014, 'D', '2K', 2000, NULL),
-(27, '500 meters', 3, 2014, 'D', '500 meters', 500, NULL),
+(25, '8 x 500, 2'' rest', 1, 2014, 'D', 'Really, a standard workout?  What kind of challenge is that?', 4000, NULL),
+(26, '2K', 2, 2014, 'D', 'HTFU, JFDI, you gotta want it Rita!', 2000, NULL),
+(27, '500 meters', 3, 2014, 'D', 'And suffer doing it.', 500, NULL),
 (28, '3 x 3K, R3', 5, 2014, 'D', 'Row three 3Ks separated by 3 minutes of restful activity.', 9000, NULL),
-(29, 'June 2014, 8 x 300, 2'' rest', 6, 2014, 'D', 'Row 8 300s separated by 2'' of restful activity.  Enter your time for the 2400 meters.  Do it very fast!', 2400, NULL),
-(30, 'July 2014, 750 meters', 7, 2014, 'D', 'Row 750 meters, rate unrestricted', 750, NULL),
-(31, 'August 2014, 5K unstricted', 8, 2014, 'D', 'August 2014, 5K unstricted', 5000, NULL),
-(32, 'September 2014, 60 minutes', 9, 2014, 'T', 'September 2014, 60 minutes', NULL, 3600.0),
+(29, '8 x 300, 2'' rest', 6, 2014, 'D', 'Row 8 300s separated by 2'' of restful activity.  Enter your time for the 2400 meters.  Do it very fast!', 2400, NULL),
+(30, '750 meters', 7, 2014, 'D', 'Row 750 meters with no rate restrictions', 750, NULL),
+(31, '5K', 8, 2014, 'D', '5K, no rate restrictions', 5000, NULL),
+(32, '60 minutes', 9, 2014, 'T', 'An hour of power!', NULL, 3600.0),
 (33, 'Kay''s Revenge', 10, 2014, 'T', '6'' r20, 5'' r22, 4'' r24, 3'' r26 2'' r28, 1'' r30, 4'' rest, repeat', NULL, 2520.0),
-(34, 'November 4 x 2K, 4''', 11, 2014, 'D', '4 x 2K on 4'' rest', 8000, NULL),
-(35, 'December 2014, 1K', 12, 2014, 'D', 'December 2014, row a 1K until death or die trying', 1000, NULL);
+(34, '4 x 2K, 4''', 11, 2014, 'D', '4 x 2K on 4'' rest, enter the time for 8K excluding rest meters.', 8000, NULL),
+(35, '1K', 12, 2014, 'D', 'Row a 1K until death or die trying', 1000, NULL),
+(36, 'An easier 4 x 1K', 1, 2015, 'D', '1 x (1K, 4'' rest) + 2 x (750, 3'' rest) + 2 x (500, 2'' rest) + 2 x (250, 1'' rest)', 4000, 0.0);
 
 -- --------------------------------------------------------
 
@@ -218,35 +220,40 @@ INSERT INTO `challenge` (`Id`, `Name`, `Month`, `Year`, `Type`, `Description`, `
 -- Table structure for table `current`
 --
 
-CREATE TABLE IF NOT EXISTS `current` (
+DROP TABLE IF EXISTS `current`;
+CREATE TABLE `current` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
   `ChallengeId` int(11) NOT NULL,
   `StartActive` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `EndActive` timestamp NULL DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `EndActive` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `current`
 --
 
-INSERT INTO `current` (`ChallengeId`, `StartActive`, `EndActive`) VALUES
-(16, '2014-04-19 20:57:57', '2014-05-01 07:05:43'),
-(17, '2014-05-01 07:05:43', '2014-05-01 07:08:17'),
-(28, '2014-05-01 07:08:17', '2014-06-01 07:54:51'),
-(17, '2014-06-01 07:54:51', '2014-06-01 07:57:42'),
-(29, '2014-06-01 07:57:42', '2014-07-01 22:37:39'),
-(30, '2014-07-01 22:37:39', '2014-08-03 18:55:57'),
-(31, '2014-08-03 18:55:57', '2014-09-01 21:08:40'),
-(32, '2014-09-01 21:08:40', '2014-10-02 21:33:13'),
-(33, '2014-10-02 21:33:13', '2014-11-02 20:19:09'),
-(34, '2014-11-02 20:19:09', '2014-12-05 20:20:58'),
-(35, '2014-12-05 20:20:58', NULL);
+INSERT INTO `current` (`Id`, `ChallengeId`, `StartActive`, `EndActive`) VALUES
+(1, 16, '2014-04-19 20:57:57', '2014-05-01 07:05:43'),
+(2, 17, '2014-05-01 07:05:43', '2014-05-01 07:08:17'),
+(3, 28, '2014-05-01 07:08:17', '2014-06-01 07:54:51'),
+(4, 17, '2014-06-01 07:54:51', '2014-06-01 07:57:42'),
+(5, 29, '2014-06-01 07:57:42', '2014-07-01 22:37:39'),
+(6, 30, '2014-07-01 22:37:39', '2014-08-03 18:55:57'),
+(7, 31, '2014-08-03 18:55:57', '2014-09-01 21:08:40'),
+(8, 32, '2014-09-01 21:08:40', '2014-10-02 21:33:13'),
+(9, 33, '2014-10-02 21:33:13', '2014-11-02 20:19:09'),
+(10, 34, '2014-11-02 20:19:09', '2014-12-05 20:20:58'),
+(11, 35, '2014-12-05 20:20:58', '2015-01-01 22:37:38'),
+(12, 36, '2015-01-01 22:41:40', NULL);
 
 -- --------------------------------------------------------
 
 --
 -- Stand-in structure for view `summary_points`
 --
-CREATE TABLE IF NOT EXISTS `summary_points` (
+DROP VIEW IF EXISTS `summary_points`;
+CREATE TABLE `summary_points` (
 `AthleteId` int(11)
 ,`ChallengeId` int(11)
 ,`PacePoints` decimal(32,0)

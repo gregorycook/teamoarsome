@@ -108,7 +108,7 @@ order by ifnull(a.Time/(a.Distance/500), 10000),
 		return $attempts;
 	}
 	
-	private static function UpdatePoints($challengeId)
+	public static function UpdatePoints($challengeId)
 	{
 		$challenge = Challenge::GetById($challengeId);
 		
