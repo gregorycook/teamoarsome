@@ -72,6 +72,7 @@ class Attempt
 		$attempt->GainPoints = $r['GainPoints'];
 		$attempt->TotalPacePoints = $r['TotalPacePoints'];
 		$attempt->TotalGainPoints = $r['TotalGainPoints'];
+		$attempt->Gain = $r['Gain'];
 		
 		return $attempt;
 	}
@@ -88,6 +89,7 @@ class Attempt
 		a.Weight,
 		a.Entered,
 		a.SPM,
+		a.Gain,
 		ifnull(a.PacePoints, 0) PacePoints,
 		ifnull(a.GainPoints, 0) GainPoints,
 		ifnull(sp.PacePoints, 0) TotalPacePoints,
@@ -124,7 +126,8 @@ order by ifnull(a.Time/(a.Distance/500), 10000),
 		$gainSql =
 "select x.AthleteId,
         x.this_pace,
-        y.last_pace
+        y.last_pace,
+        this_pace - last_pace gain_pace
    from (select a.ChallengeId,
                 c.Year this_year,
                 c.Month this_month,
@@ -151,7 +154,8 @@ order by this_pace - last_pace desc";
 			if (isset($r["last_pace"]))
 			{
 				$athleteId = $r["AthleteId"];
-				$updateStatement = "update attempt set GainPoints=$points where ChallengeId=$challengeId and AthleteId=$athleteId";
+				$gain = $r["gain_pace"];
+				$updateStatement = "update attempt set GainPoints=$points, Gain=$gain where ChallengeId=$challengeId and AthleteId=$athleteId";
 				ExecuteStatement($updateStatement);
 			}
 			$points++;
@@ -163,21 +167,34 @@ order by this_pace - last_pace desc";
 		$paceSql =
 "SELECT a.AthleteId,
 		a.Distance,
-		a.Time
+		a.Time,
+		a.Distance/a.Time Pace
    FROM attempt a
  where a.ChallengeId = $challengeId
-order by a.Distance/a.Time";
+order by a.Distance/a.Time desc";
 		
 		$attemptRecords = GetSelectResult($paceSql);
 	
-		$points = 1;
+		$points = count($attemptRecords) + 1;
+		$lastPace = 0;
+		$accSubtractPoints = 1;
 		foreach ($attemptRecords as $r)
 		{
+			$pace = $r["Pace"];
+			if ($pace == $lastPace)
+			{
+				$accSubtractPoints += 1;
+			}
+			else
+			{
+				$points = $points - $accSubtractPoints;
+				$accSubtractPoints = 1;
+			}
 			$athleteId = $r["AthleteId"];
 			$updateStatement = "update attempt set PacePoints=$points where ChallengeId=$challengeId and AthleteId=$athleteId";
 			ExecuteStatement($updateStatement);
-				
-			$points++;
+			
+			$lastPace = $pace;
 		}
 	}
 }

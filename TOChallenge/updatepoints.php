@@ -41,19 +41,20 @@
 	*/
 	
 	/* Remember to escape ' such as "8 x 2\' r2"  */
-	$challenge = new Challenge(1, "2K", 2, 2017, "D", "The most hated and feared event.  Ever.", 2000, 0);
+	/*
+	$challenge = new Challenge(1, "8 x 2 r2", 1, 2017, "T", "Row for 2 minutes then rest 2 minutes.  Then do that 7 more times.  Record the distance rowed in the sixteen non-rest minutes.", 0, 960);
 	$challengeId = $challenge->Save();
 	
 	$lastChallenge = Challenge::GetById($challengeId);
 	$lastChallenge->MakeCurrent();
+	*/
 	
-	
-	/*
 	$challenges = Challenge::GetAll();
 	$reversed = array_reverse($challenges);
 	foreach($reversed as $c)
 	{
 		Attempt::UpdatePoints($c->ChallengeId);
 	}
-	*/
+	
+	// Attempt::UpdatePoints();
 ?>

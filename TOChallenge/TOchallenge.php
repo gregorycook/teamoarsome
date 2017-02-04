@@ -171,6 +171,7 @@
 				<th>Distance</th>
 				<th>Time</th>
 				<th>Pace</th>
+				<th>Gain</th>
 				<th>spm</th>
 				<th>Pace Points</th>
 				<th>Gain Points</th>
@@ -191,6 +192,7 @@
 				echo "<td>".$attempt->Distance."</td>";
 				echo "<td>".Challenge::FormatSeconds($attempt->Time)."</td>";
 				echo "<td>".Challenge::FormatSeconds($pace)."</td>";
+				echo "<td>".round(-$attempt->Gain, 1)."</td>";
 				echo "<td>".$attempt->SPM."</td>";
 				echo "<td>".$attempt->PacePoints."</td>";
 				echo "<td>".$attempt->GainPoints."</td>";
