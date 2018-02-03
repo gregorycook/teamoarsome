@@ -9,6 +9,8 @@
 	$selectedChallenge = $currentChallenge;
 	$selectedChallengeId = $currentChallengeId;
 	
+	$openEntry = false;
+	
 	if($_SERVER['REQUEST_METHOD']=="POST")
 	{
 		if ($_POST["action"] == "ADD-ATTEMPT")
@@ -37,10 +39,16 @@
 			$newAthlete->Save();
 		}
 	}
-	elseif ($_SERVER['REQUEST_METHOD']=="GET" && isset($_GET['id']))
+	elseif ($_SERVER['REQUEST_METHOD']=="GET")
 	{
-		$selectedChallenge = Challenge::GetById($_GET['id']);
-		$selectedChallengeId = $selectedChallenge->ChallengeId;
+		if (isset($_GET['id'])) {
+			$selectedChallenge = Challenge::GetById($_GET['id']);
+			$selectedChallengeId = $selectedChallenge->ChallengeId;
+		}
+
+		if (isset($_GET['openEntry'])) {
+			$openEntry = true;
+		}
 	}
 	
 	$athletes = Athlete::GetAll();
@@ -166,7 +174,7 @@
 				<h2><?php echo $selectedChallenge->Name; ?></h2>
 				<br><blockquote><?php echo $selectedChallenge->Description; ?></blockquote>
 				<table>
-			<tr>
+				<tr>
 				<th>Rower</th>
 				<th>Distance</th>
 				<th>Time</th>
@@ -191,8 +199,8 @@
 				echo "<td>".$attempt->AthleteName."</td>";
 				echo "<td>".$attempt->Distance."</td>";
 				echo "<td>".Challenge::FormatSeconds($attempt->Time)."</td>";
-				echo "<td>".Challenge::FormatSeconds($pace)."</td>";
-				echo "<td>".round(-$attempt->Gain, 1)."</td>";
+				echo "<td title='".$pace."'>".Challenge::FormatSeconds($pace)."</td>";
+				echo "<td title='".-$attempt->Gain."'>".round(-$attempt->Gain, 1)."</td>";
 				echo "<td>".$attempt->SPM."</td>";
 				echo "<td>".$attempt->PacePoints."</td>";
 				echo "<td>".$attempt->GainPoints."</td>";
@@ -205,27 +213,29 @@
 			?>
 		</table>
 		<div id="entry">	
-            <?php if ($selectedChallenge->ChallengeId == $currentChallengeId) {?>
+            <?php if (($selectedChallenge->ChallengeId == $currentChallengeId) or $openEntry) {?>
 			<form action="TOchallenge.php" method="POST">
-			<input type="hidden" name="challengeId" value="<?php echo $currentChallenge->ChallengeId ?>"/>
-			<input type="hidden" name="challengeType" value="<?php echo $currentChallenge->Type ?>"/>
-			<input type="hidden" name="challengeTime" value="<?php echo $currentChallenge->Time ?>"/>
-			<input type="hidden" name="challengeDistance" value="<?php echo $currentChallenge->Distance ?>"/>
+			<input type="hidden" name="challengeId" value="<?php echo $selectedChallenge->ChallengeId ?>"/>
+			<input type="hidden" name="challengeType" value="<?php echo $selectedChallenge->Type ?>"/>
+			<input type="hidden" name="challengeTime" value="<?php echo $selectedChallenge->Time ?>"/>
+			<input type="hidden" name="challengeDistance" value="<?php echo $selectedChallenge->Distance ?>"/>
 			<input type="hidden" name="action" value="ADD-ATTEMPT"/>
 			<div id="rower">
 			Rower:
 				<select name="athlete">
+				
 					<?php 
-
 					foreach($athletes as $athlete)
 					{
 						echo "<option value='$athlete->AthleteId'>$athlete->Name</option>\n";
 					}
 					?>
+					
 				</select>
 			</div>
+			
 			<?php 
-			if ($currentChallenge->Type == "T")
+			if ($selectedChallenge->Type == "T")
 			{
 				echo '<div id="meters">Meters <input name="meters" size="5" maxlength="5" onkeypress="return numbersonly(this, event)"></div>';
 			}
@@ -270,7 +280,6 @@
 				<select name="weight">
 					<option value='H'>Heavyweight </option>
 					<option value='L'>Lightweight </option>
-
 				</select>
 			</div>
 			

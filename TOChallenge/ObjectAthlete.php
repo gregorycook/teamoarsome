@@ -7,7 +7,7 @@
 		var $Name;
 		var $Gender;
 		
-		function Athlete($athleteId, $name, $gender)
+		function __construct($athleteId, $name, $gender)
 		{
 			$this->AthleteId = $athleteId;
 			$this->Name = $name;
@@ -16,11 +16,16 @@
 		
 		function Save()
 		{
+			try{
+			
 			$deleteSQL = "delete from athlete where id=".$this->AthleteId;
 			ExecuteStatement($deleteSQL);
 			
 			$insertSQL = "insert into athlete(Name, Gender)values('".$this->Name."','".$this->Gender."')";
-			ExecuteStatement($insertSQL);
+			return ExecuteStatement($insertSQL);}
+			catch (Exception $e){
+				print($e->getMessage());
+			}
 		}
 		
 	static function GetAll()

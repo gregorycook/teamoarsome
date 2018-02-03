@@ -43,6 +43,7 @@
 		
 	function ExecuteStatement($statement)
 	{
+		//print($statement);
 		$mysqli = GetConnection();
 		if (!empty($mysqli))
 		{
