@@ -1,0 +1,54 @@
+@CHARSET "UTF-8";
+
+
+
+body
+{ font-family: "trebuchet ms", arial, sans-serif;
+  color: #D2122C;
+  background: #14237E;
+  position: absolute;
+  font-size: 18px;}
+
+#challenge
+{	top: 40px;
+	margin-top:  10px;
+	margin-left:  20px;}
+
+#newChallenge
+{	top: 100px;
+	margin-top:  10px;
+	margin-left:  20px; }
+
+.newChallengeEntry{
+}
+
+.newChallengeEntry2{
+	left-margin: 150:px;
+	font-size: 22px;
+}
+
+input{
+	left-margin: 150:px;
+	font-size: 22px;
+}
+
+input.newChallengeEntry{
+	font-size: 10px;}
+
+#newAthlete
+{	top: 100px;
+	margin-top:  10px;
+	margin-left:  20px;}
+
+
+input.newAthleteEntry{
+	font-size: 10px;}
+	
+a:link, a:visited {
+    color: #D2122C;
+    padding: 14px 25px;
+    text-align: center; 
+    text-decoration: none;
+    display: inline-block;
+}
+	
