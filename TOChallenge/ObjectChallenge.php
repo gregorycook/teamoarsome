@@ -92,6 +92,11 @@ class Challenge
 		return Challenge::CreateFromRecord($challengeRecord[0]);
 	}
 	
+	static function GetCurrentAsJson()
+	{
+	    return json_encode(Challenge::GetCurrent());
+	}
+	
 	static function GetById($challengeId)
 	{
 		$selectSQL = "select ch.* from challenge ch where ch.Id = ".$challengeId;
@@ -119,6 +124,11 @@ class Challenge
 		}
 	
 		return $challenges;
+	}
+	
+	static function GetAllAsJson()
+	{
+	    return json_encode(Challenge::GetAll());
 	}
 	
 	static function FormatSeconds($seconds)

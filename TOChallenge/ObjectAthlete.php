@@ -53,5 +53,11 @@ order by isnull(x.thingy),
 			
 			return $athletes;
 		}
+		
+		    
+		    static function GetAllAsJson()
+		    {
+		        return json_encode(Athlete::GetAll());
+		    }
 	}
 ?>
