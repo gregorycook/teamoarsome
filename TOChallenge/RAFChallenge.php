@@ -54,7 +54,7 @@
 	$athletes = Athlete::GetAll();
 	
 	$challenges = Challenge::GetAll();
-	$attempts = Attempt::GetForChallenge($currentChallengeId);
+	$attempts = Attempt::GetForChallenge($selectedChallengeId);
 	
 	function FormatSection($challenge)
 	{

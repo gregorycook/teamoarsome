@@ -89,7 +89,7 @@ class Attempt
 		a.Weight,
 		a.Entered,
 		a.SPM,
-		a.Gain,
+		ifnull(a.Gain, 0) Gain,
 		ifnull(a.PacePoints, 0) PacePoints,
 		ifnull(a.GainPoints, 0) GainPoints,
 		ifnull(sp.PacePoints, 0) TotalPacePoints,
@@ -100,7 +100,6 @@ order by ifnull(a.Time/(a.Distance/500), 10000),
        sp.PacePoints + sp.GainPoints desc";
 		
 		$attemptRecords = GetSelectResult($selectSQL);
-	
 		$attempts = array();
 		foreach ($attemptRecords as $r)
 		{
