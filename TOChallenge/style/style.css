@@ -59,25 +59,46 @@ table
 { font-size:  12px;
   padding-top: 10px;
   padding-bottom:  10px;
-  text-align: center;}
+  text-align: center;
+  column-width: auto;}
 
 table tr th, table tr td
 { background: #FFF;
   color: #47433F;
   border-top: 1px solid #FFF;
-  width: 100px;
-  padding: 4px 4px;}
+  padding: 4px 4px; }
   
 table tr th
 { font-weight: bold;}
+
+.headerSortDown:after,
+.headerSortUp:after,
+.headerNoSort:after {
+  content: ' ';
+  position: relative;
+  left: 2px;
+  border: 8px solid transparent;}
+
+.headerSortDown:after {
+  top: 10px;
+  border-top-color: silver;}
+
+.headerSortUp:after {
+  bottom: 15px;
+  border-bottom-color: silver;}
+
+.headerSortDown,
+.headerSortUp,
+.headerNoSort {
+  padding-right: 10px;
+}
 
 #logo
 { width: 100%;
   background: transparent;
   color: #DD753C;
   margin-top: 24px;
-  margin-left: 10px;
-  }
+  margin-left: 10px;}
 
 #menu
 {  width: 200px;
@@ -87,8 +108,7 @@ table tr th
 	float: left;}
   
 #challenge
-{	width: 600px;
-	height:  400px;
+{	height:  400px;
 	margin-top:  10px;
 	margin-left:  250px;
 	font-size:  18px;}
